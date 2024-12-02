@@ -1,0 +1,21 @@
+{
+    "transaction_type": [
+      {
+        "id": 1,
+        "name": "Financiera"
+      },
+      {
+        "id": 2,
+        "name": "Comercial"
+      },
+      {
+        "id": 3,
+        "name": "Moneda Virtual"
+      },
+      {
+        "id": 4,
+        "name": "Black"
+      }
+    ]
+  }
+  

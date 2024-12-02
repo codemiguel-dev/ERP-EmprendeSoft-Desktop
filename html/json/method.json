@@ -1,0 +1,34 @@
+{
+    "shipping_methods": [
+      {
+        "id": 1,
+        "name": "Envío Estándar",
+        "delivery_time": "3-5 días hábiles",
+        "description": "Entrega a domicilio en un plazo de 3 a 5 días hábiles.",
+        "available": true
+      },
+      {
+        "id": 2,
+        "name": "Envío Rápido",
+        "delivery_time": "1-2 días hábiles",
+        "description": "Entrega a domicilio en un plazo de 1 a 2 días hábiles.",
+        "available": true
+      },
+      {
+        "id": 3,
+        "name": "Recogida en Tienda",
+        "delivery_time": "Inmediato",
+        "description": "Recoge tu pedido en nuestra tienda.",
+        "available": true
+      },
+      {
+        "id": 4,
+        "name": "Envío Internacional",
+        "cost": 25.00,
+        "delivery_time": "7-14 días hábiles",
+        "description": "Entrega a nivel internacional, tiempos de entrega varían por país.",
+        "available": false
+      }
+    ]
+  }
+  

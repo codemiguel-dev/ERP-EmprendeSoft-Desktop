@@ -1,0 +1,29 @@
+{
+    "transaction_entity": [
+      {
+        "id": 1,
+        "name": "Banco"
+      },
+      {
+        "id": 2,
+        "name": "Cliente"
+      },
+      {
+        "id": 3,
+        "name": "Proveedor"
+      },
+      {
+        "id": 4,
+        "name": "Gubernamental"
+      },
+      {
+        "id": 5,
+        "name": "Blockchain"
+      },
+      {
+        "id": 6,
+        "name": "Empresa"
+      }
+    ]
+  }
+  

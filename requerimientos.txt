@@ -1,0 +1,52 @@
+1-Gestión de clientes: Funcionalidades para almacenar información de clientes, 
+como nombres, direcciones, información de contacto, historial de transacciones, etc.
+
+2-Gestión de productos/servicios: Capacidad para agregar, 
+editar y eliminar productos o servicios, incluyendo descripciones, 
+precios, unidades en stock, etc.
+
+3-Gestión de inventario: Funciones para realizar un seguimiento del inventario disponible, 
+recibir notificaciones de bajo stock, generar informes de inventario, etc.
+
+4-Gestión de ventas: Herramientas para realizar ventas, 
+emitir facturas, generar cotizaciones, procesar pagos, etc.
+
+5-Gestión de compras: Funcionalidades para realizar pedidos a proveedores, 
+registrar compras, mantener un historial de transacciones, etc.
+
+7-Gestión financiera: Capacidades para registrar gastos, 
+ingresos, generar estados financieros, 
+realizar seguimiento de cuentas por cobrar y cuentas por pagar, etc.
+
+color
+
+Blanco: #FFFFFF
+Gris claro: #CCCCCC
+Gris medio: #999999
+Gris oscuro: #666666
+Azul claro: #B3E5FC
+Verde claro: #C8E6C9
+Amarillo suave: #FFF9C4
+Rosa pálido: #FFCCBC
+Lavanda: #E1BEE7
+Celeste: #B3E5FC
+
+8-Generación de informes: Funciones para generar informes personalizados sobre ventas, 
+inventario, finanzas, etc.
+
+9-Seguridad y acceso: Herramientas para gestionar usuarios y permisos, 
+asegurando que solo las personas autorizadas tengan acceso a ciertas funciones y datos.
+
+10-Compatibilidad: Asegurarse de que el software sea compatible con diferentes 
+sistemas operativos (Windows, MacOS, Linux) si es necesario.
+
+11-Interfaz de usuario intuitiva: 
+Diseñar una interfaz fácil de usar e intuitiva que permita a los usuarios navegar y 
+realizar tareas sin dificultad.
+
+12-Personalización: Ofrecer opciones de personalización para adaptar 
+el software a las necesidades específicas de cada empresa.
+
+13-Soporte y mantenimiento: Proporcionar servicios de soporte técnico y 
+actualizaciones periódicas para garantizar que el software funcione de manera óptima y
+ esté actualizado.

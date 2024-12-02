@@ -1,0 +1,16 @@
+{
+    "status": [
+        {
+            "name": "Pendiente"
+        },
+        {
+            "name": "En camino"
+        },
+        {
+            "name": "Entregado"
+        },
+        {
+            "name": "Cancelado"
+        }
+    ]
+}

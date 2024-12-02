@@ -1,0 +1,17 @@
+{
+    "status": [
+      {
+        "id": 1,
+        "name": "En progreso"
+      },
+      {
+        "id": 2,
+        "name": "Planificada"
+      },
+      {
+        "id": 3,
+        "name": "Completado"
+      }
+    ]
+  }
+  

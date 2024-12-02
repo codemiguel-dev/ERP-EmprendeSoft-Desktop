@@ -1,0 +1,61 @@
+{
+    "job": [
+      {
+        "id": 1,
+        "name": "Gestor de Operaciones",
+        "descripcion": "Supervisa y optimiza los procesos operativos de la organización para garantizar su eficiencia.",
+        "requisitos": "Experiencia en gestión de operaciones y habilidades organizativas.",
+        "ubicacion": "Oficina central"
+      },
+      {
+        "id": 2,
+        "name": "Coordinador de Recursos Humanos",
+        "descripcion": "Apoya en los procesos de reclutamiento, capacitación y gestión de personal.",
+        "requisitos": "Conocimientos en recursos humanos y habilidades interpersonales.",
+        "ubicacion": "Recursos Humanos"
+      },
+      {
+        "id": 3,
+        "name": "Especialista en Soporte",
+        "descripcion": "Brinda soporte a los empleados y resuelve problemas técnicos o de otro tipo.",
+        "requisitos": "Habilidades para resolver problemas y conocimientos técnicos básicos.",
+        "ubicacion": "Área de soporte"
+      },
+      {
+        "id": 4,
+        "name": "Analista de Datos",
+        "descripcion": "Analiza datos clave de la organización para apoyar la toma de decisiones.",
+        "requisitos": "Conocimientos en análisis de datos y herramientas de visualización.",
+        "ubicacion": "Departamento de análisis"
+      },
+      {
+        "id": 5,
+        "name": "Asistente Administrativo",
+        "descripcion": "Apoya en tareas administrativas y de gestión diaria de la oficina.",
+        "requisitos": "Habilidades administrativas y atención al detalle.",
+        "ubicacion": "Administración"
+      },
+      {
+        "id": 6,
+        "name": "Encargado de Logística",
+        "descripcion": "Gestiona el flujo de bienes y servicios, asegurando una cadena de suministro eficiente.",
+        "requisitos": "Experiencia en logística y gestión de inventarios.",
+        "ubicacion": "Almacén o centro de distribución"
+      },
+      {
+        "id": 7,
+        "name": "Coordinador de Comunicación",
+        "descripcion": "Coordina la comunicación interna y externa de la organización.",
+        "requisitos": "Experiencia en comunicación corporativa y habilidades de redacción.",
+        "ubicacion": "Comunicación y marketing"
+      },
+      {
+        "id": 8,
+        "name": "Encargado de Seguridad",
+        "descripcion": "Supervisa la seguridad de las instalaciones y garantiza la protección del personal.",
+        "requisitos": "Conocimientos en seguridad y protocolos de emergencia.",
+        "ubicacion": "Seguridad"
+      }
+    ]
+  }
+  

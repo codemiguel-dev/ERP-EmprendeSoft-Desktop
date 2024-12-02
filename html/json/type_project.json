@@ -1,0 +1,45 @@
+{
+    "type_project": [
+      {
+        "id": 1,
+        "name": "Proyecto Software"
+      },
+      {
+        "id": 2,
+        "name": "Proyecto de Infraestructura"
+      },
+      {
+        "id": 3,
+        "name": "Proyecto de Investigación (I+D)"
+      },
+      {
+        "id": 4,
+        "name": "Proyecto Marketing"
+      },
+      {
+        "id": 5,
+        "name": "Proyecto Educativo"
+      },
+      {
+        "id": 6,
+        "name": "Proyecto Social"
+      },
+      {
+        "id": 7,
+        "name": "Proyecto Lógistica"
+      },
+      {
+        "id": 8,
+        "name": "Proyecto Financiero"
+      },
+      {
+        "id": 9,
+        "name": "Proyecto Creativo"
+      },
+      {
+        "id": 10,
+        "name": "Proyecto de Tranformación Digital"
+      }
+    ]
+  }
+  

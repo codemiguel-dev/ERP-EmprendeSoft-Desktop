@@ -1,0 +1,25 @@
+{
+    "status": [
+      {
+        "id": 1,
+        "name": "No iniciada"
+      },
+      {
+        "id": 2,
+        "name": "En progreso"
+      },
+      {
+        "id": 3,
+        "name": "Completada"
+      },
+      {
+        "id": 4,
+        "name": "En espera"
+      },
+      {
+        "id": 5,
+        "name": "Cancelada"
+      }
+    ]
+  }
+  

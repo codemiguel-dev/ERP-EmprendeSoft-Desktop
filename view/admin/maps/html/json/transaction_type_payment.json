@@ -1,0 +1,33 @@
+{
+    "transaction_type_payment": [
+      {
+        "id": 1,
+        "name": "Efectivo"
+      },
+      {
+        "id": 2,
+        "name": "Tranferencia Bancaria"
+      },
+      {
+        "id": 3,
+        "name": "Débito"
+      },
+      {
+        "id": 4,
+        "name": "Crédito"
+      },
+      {
+        "id": 5,
+        "name": "Criptomoneda"
+      },
+      {
+        "id": 6,
+        "name": "Gueque"
+      },
+      {
+        "id": 7,
+        "name": "Qr"
+      }
+    ]
+  }
+  

@@ -1,0 +1,28 @@
+{
+    "report_types": [
+        {
+            "id": 1,
+            "name": "Informe de Ventas"
+        },
+        {
+            "id": 2,
+            "name": "Informe de Inventario"
+        },
+        {
+            "id": 3,
+            "name": "Informe Financiero"
+        },
+        {
+            "id": 4,
+            "name": "Informe de Recursos Humanos"
+        },
+        {
+            "id": 5,
+            "name": "Informe de Marketing"
+        },
+        {
+            "id": 6,
+            "name": "Informe de Producción"
+        }
+    ]
+}

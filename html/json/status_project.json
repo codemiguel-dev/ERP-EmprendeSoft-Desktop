@@ -1,0 +1,37 @@
+{
+    "status": [
+      {
+        "id": 1,
+        "name": "Idea o Propuesta"
+      },
+      {
+        "id": 2,
+        "name": "Planificación"
+      },
+      {
+        "id": 3,
+        "name": "En espera o Pendiente"
+      },
+      {
+        "id": 4,
+        "name": "En curso"
+      },
+      {
+        "id": 5,
+        "name": "En revisión o control de calidad"
+      },
+      {
+        "id": 6,
+        "name": "Bloqueado o En pausa"
+      },
+      {
+        "id": 7,
+        "name": "Completado"
+      },
+      {
+        "id": 8,
+        "name": "Cancelado o abandonado"
+      }
+    ]
+  }
+  

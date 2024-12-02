@@ -1,0 +1,5 @@
+{
+    "python.analysis.extraPaths": [
+        "./build/exe.win-amd64-3.11/lib"
+    ]
+}

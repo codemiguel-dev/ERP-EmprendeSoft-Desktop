@@ -1,0 +1,157 @@
+import os
+from configuration.configuration_message import show_message
+
+
+import bcrypt
+from passlib.hash import bcrypt as passlib_bcrypt
+
+from models.connect import connect_to_database
+
+
+class ModelUser:
+
+    def register(self, name, email, fono, address, password, role, image):
+        conn = connect_to_database()
+        if conn:
+            conn.execute(
+                "PRAGMA busy_timeout = 3000"
+            )  # Espera hasta 3 segundos antes de fallar por bloqueo
+            try:
+                with conn:
+                    cur = conn.cursor()
+
+                    # Verifica si el usuario ya existe
+                    cur.execute("SELECT * FROM user WHERE name = ?", (name,))
+                    user_data = cur.fetchone()
+                    if user_data:
+                        show_message("Error", "El usuario ya existe.")
+                    else:
+                        # Si se ha proporcionado una imagen
+                        if image:
+                            try:
+                                # Verifica que image sea una ruta de archivo válida
+                                if not os.path.isfile(image):
+                                    raise FileNotFoundError(
+                                        "La imagen seleccionada no se encontró."
+                                    )
+                                with open(image, "rb") as file:
+                                    image_data = file.read()
+                            except FileNotFoundError:
+                                show_message(
+                                    "Error", "La imagen seleccionada no se encontró."
+                                )
+                                return
+                        else:
+                            image_data = None  # O puedes cargar una imagen por defecto
+
+                        # Cifra la contraseña antes de almacenarla
+                        hashed_password = bcrypt.hashpw(
+                            password.encode("utf-8"), bcrypt.gensalt()
+                        )
+
+                        # Inserta el nuevo usuario en la base de datos
+                        cur.execute(
+                            "INSERT INTO user (image, name, password, email, contact_num, address, role) VALUES (?, ?, ?, ?, ?, ?, ?);",
+                            (
+                                image_data,
+                                name,
+                                hashed_password,
+                                email,
+                                fono,
+                                address,
+                                role,
+                            ),
+                        )
+
+                        show_message("Información", "Registro exitoso.")
+            finally:
+                conn.close()
+        else:
+            show_message("Error", "No se pudo conectar a la base de datos.")
+
+    def get_user(self):
+        conn = connect_to_database()
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM user")
+        user = cursor.fetchall()
+        conn.close()
+
+        return user
+
+    def update(self, uid, name, password, email, fono, address, role, image):
+        conn = connect_to_database()
+        if conn:
+            try:
+                with conn:
+                    cur = conn.cursor()
+                    # Cifra la contraseña antes de almacenarla
+                    hashed_password = bcrypt.hashpw(
+                        password.encode("utf-8"), bcrypt.gensalt()
+                    )
+
+                    # Si se ha proporcionado una imagen
+                    if image:
+                        try:
+                            # Verifica que image sea una ruta de archivo válida
+                            if not os.path.isfile(image):
+                                raise FileNotFoundError(
+                                    "La imagen seleccionada no se encontró."
+                                )
+                            with open(image, "rb") as file:
+                                image_data = file.read()
+                        except FileNotFoundError:
+                            show_message(
+                                "Error", "La imagen seleccionada no se encontró."
+                            )
+                            return
+                    else:
+                        image_data = None  # O puedes cargar una imagen por defecto
+
+                    # Cifra la contraseña antes de almacenarla
+                    hashed_password = bcrypt.hashpw(
+                        password.encode("utf-8"), bcrypt.gensalt()
+                    )
+
+                    # Actualiza los datos del inventario existente
+                    cur.execute(
+                        """
+                    UPDATE user 
+                    SET name = ?, password = ?, email = ?, contact_num = ?, address = ?, role = ?, image =?
+                    WHERE id = ?;
+                    """,
+                        (
+                            name,
+                            hashed_password,
+                            email,
+                            fono,
+                            address,
+                            role,
+                            image_data,
+                            uid,
+                        ),
+                    )
+
+                    show_message(
+                        "Información", "Actualización realizada en la base de datos."
+                    )
+
+            finally:
+                conn.close()
+        else:
+            show_message("Error", "No se pudo conectar a la base de datos.")
+
+    def delete(self, uid):
+        conn = connect_to_database()
+        if conn:
+            try:
+                with conn:
+                    cur = conn.cursor()
+                    # Elimina el registro del inventario existente
+                    cur.execute("DELETE FROM user WHERE id = ?;", (uid,))
+                    show_message(
+                        "Información", "Eliminación realizada en la base de datos."
+                    )
+            finally:
+                conn.close()
+        else:
+            show_message("Error", "No se pudo conectar a la base de datos.")

@@ -1,0 +1,19 @@
+pyinstaller --windowed --icon=img/icon.ico --add-data "view/admin/maps/html/mapa.html;html" --add-data "view/admin/maps/html/mapa_get_coordinate.html;html" --add-data "view/admin/maps/html/json/coordinate.json;json" main.py
+
+pyinstaller --windowed --icon=img/icon.ico \
+--add-data "models;models" \
+--add-data "json;json" \
+--add-data "configuration;configuration" \
+--add-data "controller;controller" \
+--add-data "database;database" \
+--add-data "design;design" \
+--add-data "doc;doc" \
+--add-data "excel;excel" \
+--add-data "img;img" \
+--add-data "view;view" \
+--add-data "voucher;voucher" \
+--hidden-import pandas \
+--hidden-import openpyxl \
+--debug all \
+main.py
+

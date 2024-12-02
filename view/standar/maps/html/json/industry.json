@@ -1,0 +1,148 @@
+{
+    "industries": [
+      {
+        "name": "Retail y Comercio",
+        "features": [
+          "Gestión de inventarios",
+          "Punto de venta (POS)",
+          "Facturación",
+          "Control de stock"
+        ]
+      },
+      {
+        "name": "Almacenes y Logística",
+        "features": [
+          "Control de almacenes",
+          "Optimización de rutas de entrega",
+          "Gestión de envíos y recepción de mercancía",
+          "Monitoreo en tiempo real"
+        ]
+      },
+      {
+        "name": "Restaurantes y Hostelería",
+        "features": [
+          "Sistema de punto de venta (POS) para restaurantes",
+          "Gestión de pedidos y mesas",
+          "Control de inventario de alimentos y bebidas",
+          "Integración con micro impresoras para boletas y pedidos"
+        ]
+      },
+      {
+        "name": "Fabricación y Producción",
+        "features": [
+          "Control de procesos productivos",
+          "Gestión de materias primas",
+          "Seguimiento de producción en tiempo real",
+          "Módulo de planificación de la producción"
+        ]
+      },
+      {
+        "name": "Servicios Profesionales",
+        "features": [
+          "Gestión de citas y clientes",
+          "Facturación y pagos",
+          "Gestión de proyectos y tiempos",
+          "Integración con contabilidad"
+        ]
+      },
+      {
+        "name": "Salud y Bienestar",
+        "features": [
+          "Gestión de citas médicas",
+          "Control de expedientes médicos",
+          "Facturación y gestión de seguros",
+          "Recordatorios y seguimiento de pacientes"
+        ]
+      },
+      {
+        "name": "Educación y Capacitación",
+        "features": [
+          "Gestión de estudiantes y profesores",
+          "Control de horarios y asistencia",
+          "Facturación de matrículas",
+          "Seguimiento de progreso académico"
+        ]
+      },
+      {
+        "name": "Construcción e Ingeniería",
+        "features": [
+          "Gestión de proyectos de construcción",
+          "Control de materiales y mano de obra",
+          "Seguimiento de tiempos y costos",
+          "Informes de avance de obra"
+        ]
+      },
+      {
+        "name": "Servicios Financieros y Contabilidad",
+        "features": [
+          "Gestión de clientes y cuentas",
+          "Facturación y contabilidad",
+          "Generación de reportes financieros",
+          "Control de gastos y presupuestos"
+        ]
+      },
+      {
+        "name": "Consultoría",
+        "features": [
+          "Gestión de proyectos y clientes",
+          "Facturación y seguimiento de horas trabajadas",
+          "Informes de productividad y costos"
+        ]
+      },
+      {
+        "name": "Agricultura y Ganadería",
+        "features": [
+          "Control de inventarios de insumos agrícolas",
+          "Seguimiento de cosechas y producción",
+          "Gestión de ventas y pedidos",
+          "Registro de actividades en campo"
+        ]
+      },
+      {
+        "name": "Entretenimiento y Eventos",
+        "features": [
+          "Gestión de eventos y reservas",
+          "Control de asistencia",
+          "Facturación y venta de entradas",
+          "Registro de clientes y contrataciones"
+        ]
+      },
+      {
+        "name": "Transporte y Movilidad",
+        "features": [
+          "Control de flotas de vehículos",
+          "Monitoreo en tiempo real de transportes",
+          "Gestión de rutas y tiempos",
+          "Facturación de servicios de transporte"
+        ]
+      },
+      {
+        "name": "Servicios Inmobiliarios",
+        "features": [
+          "Gestión de propiedades en alquiler o venta",
+          "Registro de contratos y pagos",
+          "Control de inquilinos",
+          "Informes de ventas y alquileres"
+        ]
+      },
+      {
+        "name": "Talleres y Servicios Automotrices",
+        "features": [
+          "Gestión de vehículos y clientes",
+          "Control de inventario de repuestos",
+          "Facturación de servicios",
+          "Seguimiento de órdenes de reparación"
+        ]
+      },
+      {
+        "name": "Tecnología y Software",
+        "features": [
+          "Gestión de proyectos de desarrollo",
+          "Control de tiempos y tareas",
+          "Facturación de servicios",
+          "Generación de reportes y seguimiento de hitos"
+        ]
+      }
+    ]
+  }
+  

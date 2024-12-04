@@ -15,6 +15,11 @@ def icon_configurate_top(self):
     self.bt_restaurar.setIcon(QIcon("img/chevron-up.svg"))
     self.bt_maximizar.setIcon(QIcon("img/chevron-down.svg"))
     self.bt_cerrar.setIcon(QIcon("img/x.svg"))
+    self.bt_exit_session.setIcon(QIcon("img/exit-svgrepo-com.svg"))
+
+
+def icon_configurate_exit_session(self):
+    self.bt_exit_session.setIcon(QIcon("img/exit-svgrepo-com.svg"))
 
 
 def icon_exit_program(self):

@@ -1,7 +1,3 @@
-# controller_register.py
-
-from PyQt5.QtWidgets import QMessageBox
-
 from models.modelinventory import ModelInventory
 
 

@@ -9,7 +9,7 @@ from PyQt5.QtWidgets import QApplication, QFileDialog, QSizeGrip
 from PyQt5.uic import loadUi
 
 from configuration.configuration_buttom import (
-    icon_configurate_manager,
+    icon_configurate_exit_session,
     icon_configurate_top,
     icon_excel,
     icon_exit_program,
@@ -31,7 +31,7 @@ class Viewmaininventory(QtWidgets.QMainWindow):
     def __init__(self):
         super(Viewmaininventory, self).__init__()
         self.theme = load_config(self)  # Lee la configuración al iniciar
-        loadUi(f"design/admin/maininventory{self.theme}.ui", self)
+        loadUi(f"design/standar/maininventory{self.theme}.ui", self)
 
         delete_banner(self)
 
@@ -55,15 +55,14 @@ class Viewmaininventory(QtWidgets.QMainWindow):
         self.bt_cerrar.clicked.connect(lambda: self.close())
         self.bt_maximizar.hide()
 
-        icon_configurate_manager(self)
         icon_configurate_top(self)
         icon_excel(self)
         icon_exit_program(self)
+        icon_configurate_exit_session(self)
 
         self.btn_add.clicked.connect(self.add)
         self.btn_get.clicked.connect(self.show_inventory)
         self.btn_update.clicked.connect(self.update_inventory)
-        self.btn_delete.clicked.connect(self.delete_inventory)
         self.btn_excel.clicked.connect(self.export_excel_inventory)
         self.btn_search.clicked.connect(self.search)
         self.btn_exit.clicked.connect(self.close_program)
@@ -195,41 +194,6 @@ class Viewmaininventory(QtWidgets.QMainWindow):
                 )
                 self.update_form.show()
                 self.show_inventory()
-        else:
-            QtWidgets.QMessageBox.warning(
-                self, "Error", "Por favor, seleccione una fila para actualizar."
-            )
-
-    def delete_inventory(self):
-        # Obtener índice de la fila seleccionada
-        selected_row = self.table_inventory.currentRow()
-
-        # Verificar si se ha seleccionado una fila
-        if selected_row != -1:
-            uid_item = self.table_inventory.item(selected_row, 0)
-
-            if uid_item:
-                uid = uid_item.text()
-
-                # Cuadro de diálogo de confirmación
-                reply = QtWidgets.QMessageBox.question(
-                    self,
-                    "Confirmar eliminación",
-                    f"¿Estás seguro de que deseas eliminar el usuario con ID {uid}?",
-                    QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No,
-                    QtWidgets.QMessageBox.No,
-                )
-
-                # Si el usuario confirma, se procede a eliminar
-                if reply == QtWidgets.QMessageBox.Yes:
-                    self.controller.delete_inventory(uid)
-                    self.show_inventory()
-                else:
-                    # Cancelar la eliminación
-                    QtWidgets.QMessageBox.information(
-                        self, "Cancelado", "La eliminación ha sido cancelada."
-                    )
-
         else:
             QtWidgets.QMessageBox.warning(
                 self, "Error", "Por favor, seleccione una fila para actualizar."

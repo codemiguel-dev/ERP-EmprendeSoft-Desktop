@@ -9,7 +9,6 @@ from PyQt5.QtWidgets import QApplication, QFileDialog, QSizeGrip
 from PyQt5.uic import loadUi
 
 from configuration.configuration_buttom import (
-    icon_configurate_exit_session,
     icon_configurate_top,
     icon_excel,
     icon_exit_program,
@@ -58,7 +57,6 @@ class Viewmaininventory(QtWidgets.QMainWindow):
         icon_configurate_top(self)
         icon_excel(self)
         icon_exit_program(self)
-        icon_configurate_exit_session(self)
 
         self.btn_add.clicked.connect(self.add)
         self.btn_get.clicked.connect(self.show_inventory)

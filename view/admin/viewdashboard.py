@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 from PyQt5 import QtWidgets
 from PyQt5.uic import loadUi
 
+from configuration.configuration_buttom import icon_configurate_exit_session
 from configuration.configuration_buttom_top import (
     control_bt_maximizar,
     control_bt_minimizar,
@@ -61,6 +62,7 @@ class Viewdashboradadmin(QtWidgets.QMainWindow):
 
         self.bt_maximizar.hide()
 
+        icon_configurate_exit_session(self)
         icons_dash_buttom(self)
         delete_banner(self)
 
@@ -95,6 +97,7 @@ class Viewdashboradadmin(QtWidgets.QMainWindow):
         self.btn_report.clicked.connect(self.report)
         self.btn_employee.clicked.connect(self.employee)
         self.btn_calendar.clicked.connect(self.calendar)
+        self.bt_exit_session.clicked.connect(self.exit_session)
 
         # Configurar SizeGrip para redimensionar la ventana
         self.gripSize = 10
@@ -120,6 +123,13 @@ class Viewdashboradadmin(QtWidgets.QMainWindow):
         self.controllerinvoice = InvoiceController(self)
         self.controllertransaction = TransactionController(self)
         self.controllerbusiness = BusinessController(self)
+
+    def exit_session(self):
+        self.close()
+        from view.viewlogin import LoginView
+
+        self.view_login = LoginView()
+        self.view_login.show()
 
     def load_positions(self):
         """Cargar las posiciones de los botones desde el archivo JSON."""

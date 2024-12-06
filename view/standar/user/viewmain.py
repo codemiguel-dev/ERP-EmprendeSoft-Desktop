@@ -9,7 +9,6 @@ from PyQt5.QtWidgets import QApplication, QFileDialog, QMessageBox, QSizeGrip
 from PyQt5.uic import loadUi
 
 from configuration.configuration_buttom import (
-    icon_configurate_manager,
     icon_configurate_top,
     icon_excel,
     icon_exit_program,
@@ -23,19 +22,16 @@ from configuration.configuration_config_theme import load_config
 from configuration.configuration_delete_banner import delete_banner
 from configuration.configuration_window_move import mousePressEvent, window_move
 from controller.controlleruser import UserController
-from view.admin.user.viewadd import Viewadd
-from view.admin.user.viewupdate import Viewupdate
 
 
 class Viewmainuser(QtWidgets.QMainWindow):
     def __init__(self):
         super(Viewmainuser, self).__init__()
         self.theme = load_config(self)  # Lee la configuración al iniciar
-        loadUi(f"design/admin/mainuser{self.theme}.ui", self)
+        loadUi(f"design/standar/mainuser{self.theme}.ui", self)
 
         icon_exit_program(self)
         icon_excel(self)
-        icon_configurate_manager(self)
         icon_configurate_top(self)
         delete_banner(self)
 
@@ -58,10 +54,7 @@ class Viewmainuser(QtWidgets.QMainWindow):
         self.bt_cerrar.clicked.connect(lambda: self.close())
         self.bt_maximizar.hide()
 
-        self.btn_add.clicked.connect(self.add)
         self.btn_get.clicked.connect(self.show_user)
-        self.btn_update.clicked.connect(self.update)
-        self.btn_delete.clicked.connect(self.delete)
         self.btn_excel.clicked.connect(self.export_excel)
         self.btn_search.clicked.connect(self.search)
         self.btn_exit.clicked.connect(self.close_program)
@@ -72,10 +65,6 @@ class Viewmainuser(QtWidgets.QMainWindow):
 
     def close_program(self):
         QApplication.quit()
-
-    def add(self):
-        self.inventory_add = Viewadd()
-        self.inventory_add.show()
 
     def show_user(self):
         # Obtener datos de usuarios desde el controlador
@@ -136,82 +125,6 @@ class Viewmainuser(QtWidgets.QMainWindow):
                 print(
                     f"Error: Se esperaba una tupla, pero se encontró un valor único: {user}"
                 )
-
-    def update(self):
-        # Obtener índice de la fila seleccionada
-        selected_row = self.table_user.currentRow()
-
-        # Verificar si se ha seleccionado una fila
-        if selected_row != -1:
-            uid_item = self.table_user.item(selected_row, 0)
-            image_item = self.table_user.item(selected_row, 1)
-            name_item = self.table_user.item(selected_row, 2)
-            password_item = self.table_user.item(selected_row, 3)
-            email_item = self.table_user.item(selected_row, 4)
-            fono_item = self.table_user.item(selected_row, 5)
-            address_item = self.table_user.item(selected_row, 6)
-            role_item = self.table_user.item(selected_row, 7)
-
-            if (
-                uid_item
-                and name_item
-                and email_item
-                and fono_item
-                and address_item
-                and password_item
-            ):
-                uid = uid_item.text()
-                name = name_item.text()
-                email = email_item.text()
-                fono = fono_item.text()
-                address = address_item.text()
-                password = password_item.text()
-                role = role_item.text()
-
-                # Abrir el nuevo formulario de actualización
-                self.update_form = Viewupdate(
-                    uid, name, email, fono, address, password, role
-                )
-                self.update_form.show()
-                self.show_user()
-        else:
-            QtWidgets.QMessageBox.warning(
-                self, "Error", "Por favor, seleccione una fila para actualizar."
-            )
-
-    def delete(self):
-        # Obtener índice de la fila seleccionada
-        selected_row = self.table_user.currentRow()
-
-        # Verificar si se ha seleccionado una fila
-        if selected_row != -1:
-            uid_item = self.table_user.item(selected_row, 0)
-
-            if uid_item:
-                uid = uid_item.text()
-
-                # Cuadro de diálogo de confirmación
-                reply = QtWidgets.QMessageBox.question(
-                    self,
-                    "Confirmar eliminación",
-                    f"¿Estás seguro de que deseas eliminar el usuario con ID {uid}?",
-                    QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No,
-                    QtWidgets.QMessageBox.No,
-                )
-
-                # Si el usuario confirma, se procede a eliminar
-                if reply == QtWidgets.QMessageBox.Yes:
-                    self.controller.delete_user(uid)
-                    self.show_user()
-                else:
-                    # Cancelar la eliminación
-                    QtWidgets.QMessageBox.information(
-                        self, "Cancelado", "La eliminación ha sido cancelada."
-                    )
-        else:
-            QtWidgets.QMessageBox.warning(
-                self, "Error", "Por favor, seleccione una fila para eliminar."
-            )
 
     def export_excel(self):
         # Obtener datos de usuarios desde el controlador

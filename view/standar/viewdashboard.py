@@ -4,6 +4,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QIcon
 from PyQt5.uic import loadUi
 
+from configuration.configuration_buttom import icon_configurate_exit_session
 from configuration.configuration_buttom_top import (
     control_bt_maximizar,
     control_bt_minimizar,
@@ -14,6 +15,7 @@ from configuration.configuration_dash_icon import icons_dash_buttom
 from configuration.configuration_delete_banner import delete_banner
 from configuration.configuration_window_move import mousePressEvent, window_move
 from view.standar.inventory.viewmain import Viewmaininventory
+from view.standar.user.viewmain import Viewmainuser
 
 
 class Viewdashboardstandar(QtWidgets.QMainWindow):
@@ -22,6 +24,7 @@ class Viewdashboardstandar(QtWidgets.QMainWindow):
         self.theme = load_config(self)  # Lee la configuración al iniciar
         loadUi(f"design/standar/dashboard_standar{self.theme}.ui", self)
 
+        icon_configurate_exit_session(self)
         icons_dash_buttom(self)
         delete_banner(self)
 
@@ -45,10 +48,23 @@ class Viewdashboardstandar(QtWidgets.QMainWindow):
         self.bt_maximizar.hide()
 
         self.btn_inventory.clicked.connect(self.inventory)
+        self.btn_user.clicked.connect(self.user)
+        self.bt_exit_session.clicked.connect(self.exit_session)
+
+    def exit_session(self):
+        self.close()
+        from view.viewlogin import LoginView
+
+        self.view_login = LoginView()
+        self.view_login.show()
 
     def inventory(self):
         self.inventory_view = Viewmaininventory()
         self.inventory_view.show()
+
+    def user(self):
+        self.user_view = Viewmainuser()
+        self.user_view.show()
 
 
 if __name__ == "__main__":

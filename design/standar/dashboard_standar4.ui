@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1255</width>
-    <height>863</height>
+    <width>1225</width>
+    <height>856</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -45,8 +45,8 @@
        <string notr="true">
 QFrame {
 border-radius:10px;
-background-color:#1E0070;
-}
+background-color: rgb(140, 0, 179);
+ }
 </string>
       </property>
       <property name="frameShape">
@@ -112,118 +112,6 @@ QPushButton:hover{
               <width>40</width>
               <height>40</height>
              </size>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="btn_theme0">
-            <property name="minimumSize">
-             <size>
-              <width>38</width>
-              <height>38</height>
-             </size>
-            </property>
-            <property name="cursor">
-             <cursorShape>PointingHandCursor</cursorShape>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">background-color:#1E0070;</string>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="btn_theme1">
-            <property name="minimumSize">
-             <size>
-              <width>38</width>
-              <height>38</height>
-             </size>
-            </property>
-            <property name="cursor">
-             <cursorShape>PointingHandCursor</cursorShape>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">background-color: rgb(255, 255, 255);</string>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="btn_theme2">
-            <property name="minimumSize">
-             <size>
-              <width>38</width>
-              <height>38</height>
-             </size>
-            </property>
-            <property name="cursor">
-             <cursorShape>PointingHandCursor</cursorShape>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">background-color: rgb(0, 0, 0);</string>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="btn_theme3">
-            <property name="minimumSize">
-             <size>
-              <width>38</width>
-              <height>38</height>
-             </size>
-            </property>
-            <property name="cursor">
-             <cursorShape>PointingHandCursor</cursorShape>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">background-color: rgb(33, 181, 0);</string>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="btn_theme4">
-            <property name="minimumSize">
-             <size>
-              <width>38</width>
-              <height>38</height>
-             </size>
-            </property>
-            <property name="cursor">
-             <cursorShape>PointingHandCursor</cursorShape>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">background-color: rgb(140, 0, 179);</string>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_id_session">
-            <property name="minimumSize">
-             <size>
-              <width>200</width>
-              <height>1</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">color: rgb(255, 255, 255);
-font: 20pt &quot;MS Shell Dlg 2&quot;;</string>
-            </property>
-            <property name="text">
-             <string/>
             </property>
            </widget>
           </item>
@@ -294,7 +182,7 @@ font: 20pt &quot;MS Shell Dlg 2&quot;;</string>
             </property>
             <property name="icon">
              <iconset>
-              <normaloff>../../../../../../../.designer/backup/image/minus.svg</normaloff>../../../../../../../.designer/backup/image/minus.svg</iconset>
+              <normaloff>image/minus.svg</normaloff>image/minus.svg</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -326,7 +214,7 @@ font: 20pt &quot;MS Shell Dlg 2&quot;;</string>
             </property>
             <property name="icon">
              <iconset>
-              <normaloff>../../../../../../../.designer/backup/image/chevron-up.svg</normaloff>../../../../../../../.designer/backup/image/chevron-up.svg</iconset>
+              <normaloff>image/chevron-up.svg</normaloff>image/chevron-up.svg</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -358,7 +246,7 @@ font: 20pt &quot;MS Shell Dlg 2&quot;;</string>
             </property>
             <property name="icon">
              <iconset>
-              <normaloff>../../../../../../../.designer/backup/image/chevron-down.svg</normaloff>../../../../../../../.designer/backup/image/chevron-down.svg</iconset>
+              <normaloff>image/chevron-down.svg</normaloff>image/chevron-down.svg</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -390,7 +278,7 @@ font: 20pt &quot;MS Shell Dlg 2&quot;;</string>
             </property>
             <property name="icon">
              <iconset>
-              <normaloff>../../../../../../../.designer/backup/image/x.svg</normaloff>../../../../../../../.designer/backup/image/x.svg</iconset>
+              <normaloff>image/x.svg</normaloff>image/x.svg</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -405,6 +293,9 @@ font: 20pt &quot;MS Shell Dlg 2&quot;;</string>
        </item>
        <item>
         <widget class="QFrame" name="frame_3">
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
          <property name="frameShape">
           <enum>QFrame::StyledPanel</enum>
          </property>

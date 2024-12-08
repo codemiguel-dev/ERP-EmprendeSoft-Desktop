@@ -294,7 +294,7 @@ QPushButton:hover{
 color: rgb(255, 255, 255);</string>
          </property>
          <property name="text">
-          <string>Administrar Usuario</string>
+          <string>Usuarios Registrados</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>

@@ -294,7 +294,7 @@ QPushButton:hover{
 color: rgb(255, 255, 255);</string>
          </property>
          <property name="text">
-          <string>Administrar Usuario</string>
+          <string>Usuarios Registrados</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -508,123 +508,6 @@ border: 2px solid rgb(120, 0, 171);
               </property>
               <property name="text">
                <string>Actualizar Lista</string>
-              </property>
-              <property name="iconSize">
-               <size>
-                <width>35</width>
-                <height>35</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="btn_add">
-              <property name="maximumSize">
-               <size>
-                <width>300</width>
-                <height>50</height>
-               </size>
-              </property>
-              <property name="cursor">
-               <cursorShape>PointingHandCursor</cursorShape>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QPushButton{
-border-radius:10px; 
-font: 12pt &quot;Arial&quot;;
-color: rgb(255, 255, 254);
-border: 2px solid #ffffff;
-	background-color: rgb(120, 0, 171);
-}
-
-QPushButton:hover{
-border-radius:10px; 
-font: 12pt &quot;Arial&quot;;
-color: rgb(255, 255, 255);
-border: 2px solid rgb(120, 0, 171);
-	background-color: rgb(120, 0, 171);
-}</string>
-              </property>
-              <property name="text">
-               <string>Ingresar</string>
-              </property>
-              <property name="iconSize">
-               <size>
-                <width>35</width>
-                <height>35</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="btn_update">
-              <property name="maximumSize">
-               <size>
-                <width>300</width>
-                <height>50</height>
-               </size>
-              </property>
-              <property name="cursor">
-               <cursorShape>PointingHandCursor</cursorShape>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QPushButton{
-border-radius:10px; 
-font: 12pt &quot;Arial&quot;;
-color: rgb(255, 255, 254);
-border: 2px solid #ffffff;
-	background-color: rgb(120, 0, 171);
-}
-
-QPushButton:hover{
-border-radius:10px; 
-font: 12pt &quot;Arial&quot;;
-color: rgb(255, 255, 255);
-border: 2px solid rgb(120, 0, 171);
-	background-color: rgb(120, 0, 171);
-}</string>
-              </property>
-              <property name="text">
-               <string>Actualizar</string>
-              </property>
-              <property name="iconSize">
-               <size>
-                <width>35</width>
-                <height>35</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="btn_delete">
-              <property name="maximumSize">
-               <size>
-                <width>300</width>
-                <height>50</height>
-               </size>
-              </property>
-              <property name="cursor">
-               <cursorShape>PointingHandCursor</cursorShape>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QPushButton{
-border-radius:10px; 
-font: 12pt &quot;Arial&quot;;
-color: rgb(255, 255, 254);
-border: 2px solid #ffffff;
-	background-color: rgb(120, 0, 171);
-}
-
-QPushButton:hover{
-border-radius:10px; 
-font: 12pt &quot;Arial&quot;;
-color: rgb(255, 255, 255);
-border: 2px solid rgb(120, 0, 171);
-	background-color: rgb(120, 0, 171);
-}</string>
-              </property>
-              <property name="text">
-               <string>Eliminar</string>
               </property>
               <property name="iconSize">
                <size>

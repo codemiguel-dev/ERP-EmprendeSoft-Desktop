@@ -5,7 +5,6 @@ from passlib.hash import bcrypt as passlib_bcrypt
 
 from configuration.configuration_message import show_message
 from models.connect import connect_to_database
-from view.standar.viewdashboard import Viewdashboardstandar
 
 
 class ModelInvoice:

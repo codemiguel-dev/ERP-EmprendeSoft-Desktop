@@ -15,14 +15,18 @@ from configuration.configuration_dash_icon import icons_dash_buttom
 from configuration.configuration_delete_banner import delete_banner
 from configuration.configuration_window_move import mousePressEvent, window_move
 from view.standar.inventory.viewmain import Viewmaininventory
+from view.standar.invoice.viewmain import Viewmaininvoice
 from view.standar.user.viewmain import Viewmainuser
 
 
 class Viewdashboardstandar(QtWidgets.QMainWindow):
-    def __init__(self):
+    def __init__(self, id_user, username):
         super(Viewdashboardstandar, self).__init__()
         self.theme = load_config(self)  # Lee la configuración al iniciar
         loadUi(f"design/standar/dashboard_standar{self.theme}.ui", self)
+
+        self.id_user = id_user
+        self.user_name = username
 
         icon_configurate_exit_session(self)
         icons_dash_buttom(self)
@@ -50,6 +54,7 @@ class Viewdashboardstandar(QtWidgets.QMainWindow):
         self.btn_inventory.clicked.connect(self.inventory)
         self.btn_user.clicked.connect(self.user)
         self.bt_exit_session.clicked.connect(self.exit_session)
+        self.btn_invoice.clicked.connect(self.invoice)
 
     def exit_session(self):
         self.close()
@@ -65,6 +70,10 @@ class Viewdashboardstandar(QtWidgets.QMainWindow):
     def user(self):
         self.user_view = Viewmainuser()
         self.user_view.show()
+
+    def invoice(self):
+        self.invoice_view = Viewmaininvoice(self.id_user, self.user_name)
+        self.invoice_view.show()
 
 
 if __name__ == "__main__":

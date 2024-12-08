@@ -31,7 +31,9 @@ class Login:
                                 self.dashboard_view = Viewdashboradadmin(id_user)
                                 self.dashboard_view.show()
                             elif user_data[3] == "standar":
-                                self.dashboard_view = Viewdashboardstandar()
+                                self.dashboard_view = Viewdashboardstandar(
+                                    id_user, username
+                                )
                                 self.dashboard_view.show()
                             return True
                         else:

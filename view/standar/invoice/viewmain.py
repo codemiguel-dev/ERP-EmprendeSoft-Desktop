@@ -33,11 +33,14 @@ from view.admin.inventory.viewupdate import Viewupdate
 
 
 class Viewmaininvoice(QtWidgets.QMainWindow):
-    def __init__(self):
+    def __init__(self, id_user, username):
         super(Viewmaininvoice, self).__init__()
         self.theme = load_config(self)  # Lee la configuración al iniciar
-        loadUi(f"design/admin/maininvoice{self.theme}.ui", self)
+        loadUi(f"design/standar/maininvoice{self.theme}.ui", self)
         self.sale_total = 0.0  # Inicializamos sale_total en 0
+
+        self.id_user = id_user
+        self.username = username
 
         # Inicializar el QSizeGrip y establecer su tamaño
         self.gripSize = 16  # Define el tamaño del grip
@@ -70,7 +73,7 @@ class Viewmaininvoice(QtWidgets.QMainWindow):
 
         self.show_inventory()
         self.show_client()
-        self.show_user()
+        self.show_user(self.username)
 
         self.comboboxproduct.currentIndexChanged.connect(self.update_stock_display)
         self.btn_add_cart.clicked.connect(self.add_cart)
@@ -128,24 +131,9 @@ class Viewmaininvoice(QtWidgets.QMainWindow):
         # Reconectar la señal después de añadir los productos
         self.comboboxclient.blockSignals(False)
 
-    def show_user(self):
-        # Desconectar la señal para evitar bucles infinitos
-        self.comboboxuser.blockSignals(True)
-
-        self.comboboxuser.clear()
-        # Obtener datos de inventario desde el controlador
-        users = self.controlleruser.get_user()
-
-        # Añadir productos al comboBox
-        for client in users:
-            uid = client[0]  # El primer elemento es el ID del producto
-            name = client[2]  # El segundo elemento es el nombre del producto
-
-            # Añadir el producto al combobox
-            self.comboboxuser.addItem(name, uid)
-
-        # Reconectar la señal después de añadir los productos
-        self.comboboxuser.blockSignals(False)
+    def show_user(self, username):
+        self.username = username
+        self.usertxt.setText(self.username)
 
     def update_stock_display(self):
         current_index = self.comboboxproduct.currentIndex()

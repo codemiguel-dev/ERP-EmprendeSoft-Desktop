@@ -1061,13 +1061,74 @@ border: 2px solid rgb(120, 0, 171);
              </widget>
             </item>
             <item>
-             <widget class="QComboBox" name="comboboxuser">
-              <property name="cursor">
-               <cursorShape>PointingHandCursor</cursorShape>
-              </property>
+             <widget class="QLineEdit" name="usertxt">
               <property name="styleSheet">
-               <string notr="true">background-color: rgb(0, 0, 0);
+               <string notr="true">QLabel {
+	color: rgb(255, 255, 254);
+	font: 12pt &quot;Arial&quot;;
+	background-color: rgba(0, 0, 0,0);
+}
+
+
+QLineEdit{
+background-color: rgba(0, 0, 0,0);
+border-radius:10px; 
+font: 12pt &quot;Arial&quot;;
+color: rgb(255, 255, 254);
+border: 2px solid  rgb(255, 255, 255);
+
+}
+
+QLineEdit:hover{
+background-color: rgba(0, 0, 0,0);
+border-radius:10px; 
+font: 12pt &quot;Arial&quot;;
+border: 2px solid  rgb(120, 0, 171);
+}
+
+QLineEdit:focus{
+background-color: rgb(0, 0, 0);
+border-radius:10px; 
+font: 12pt &quot;Arial&quot;;
+border: 2px solid rgb(120, 0, 171);
+}
+
+QCheckBox{
+	font: 12pt &quot;Arial&quot;;
+	color: rgb(255, 255, 255);
+}
+
+QCheckBox::indicator {
+    width: 18px;
+    height:18px;
+}
+
+QCheckBox::indicator:unchecked {
+   background-image: url(image/square.svg);
+}
+
+QCheckBox::indicator:checked {
+   background-image: url(image/check-square.svg);
+}
+
+QPushButton{
+border-radius:10px; 
+font: 12pt &quot;Arial&quot;;
+color: rgb(255, 255, 254);
+border: 2px solid #ffffff;
+}
+
+QPushButton:hover{
+border-radius:10px; 
+font: 12pt &quot;Arial&quot;;
 color: rgb(255, 255, 255);
+border: 2px solid rgb(120, 0, 171);
+	background-color: rgb(120, 0, 171);
+}
+QFrame{
+ 	background-color: #1E0070;
+	border-radius:15px; 
+}
 </string>
               </property>
              </widget>

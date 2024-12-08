@@ -18,6 +18,10 @@ class Login:
                     )
                     cur.execute(find_user, [username])
                     user_data = cur.fetchone()
+                    if not user_data:
+                        QMessageBox.critical(None, "Error", "Cuenta incorrecta.")
+                        return False
+
                     id_user = user_data[0]
 
                     if user_data:

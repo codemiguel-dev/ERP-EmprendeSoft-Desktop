@@ -15,6 +15,8 @@ from configuration.configuration_dash_icon import icons_dash_buttom
 from configuration.configuration_delete_banner import delete_banner
 from configuration.configuration_window_move import mousePressEvent, window_move
 from view.standar.client.viewmain import Viewmainclient
+from view.standar.graphic.viewexpenses import ExpensesChart
+from view.standar.graphic.viewsale import SaleChart
 from view.standar.inventory.viewmain import Viewmaininventory
 from view.standar.invoice.viewmain import Viewmaininvoice
 from view.standar.user.viewmain import Viewmainuser
@@ -57,6 +59,8 @@ class Viewdashboardstandar(QtWidgets.QMainWindow):
         self.bt_exit_session.clicked.connect(self.exit_session)
         self.btn_invoice.clicked.connect(self.invoice)
         self.btn_client.clicked.connect(self.client)
+        self.g_income.clicked.connect(self.graphic_income)
+        self.g_expenses.clicked.connect(self.graphic_expenses)
 
     def exit_session(self):
         self.close()
@@ -80,6 +84,14 @@ class Viewdashboardstandar(QtWidgets.QMainWindow):
     def client(self):
         self.client_view = Viewmainclient()
         self.client_view.show()
+
+    def graphic_income(self):
+        self.graphic_income_view = SaleChart()
+        self.graphic_income_view.show()
+
+    def graphic_expenses(self):
+        self.graphic_expenses_view = ExpensesChart()
+        self.graphic_expenses_view.show()
 
 
 if __name__ == "__main__":

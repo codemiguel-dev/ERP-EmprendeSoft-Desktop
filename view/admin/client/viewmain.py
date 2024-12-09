@@ -148,7 +148,6 @@ class Viewmainclient(QtWidgets.QMainWindow):
         # Verificar si se ha seleccionado una fila
         if selected_row != -1:
             uid_item = self.table_client.item(selected_row, 0)
-            image_item = self.table_client.item(selected_row, 1)
             name_item = self.table_client.item(selected_row, 2)
             lastaname_item = self.table_client.item(selected_row, 3)
             email_item = self.table_client.item(selected_row, 4)
@@ -166,7 +165,6 @@ class Viewmainclient(QtWidgets.QMainWindow):
                 and type_item
             ):
                 uid = uid_item.text()
-                image = image_item.text()
                 name = name_item.text()
                 lastname = lastaname_item.text()
                 email = email_item.text()
@@ -176,7 +174,7 @@ class Viewmainclient(QtWidgets.QMainWindow):
 
                 # Abrir el nuevo formulario de actualización
                 self.update_form = Viewupdate(
-                    uid, name, lastname, email, fono, address, typeclient, image
+                    uid, name, lastname, email, fono, address, typeclient
                 )
                 self.update_form.show()
                 self.show_client()

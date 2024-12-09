@@ -14,6 +14,7 @@ from configuration.configuration_config_theme import load_config
 from configuration.configuration_dash_icon import icons_dash_buttom
 from configuration.configuration_delete_banner import delete_banner
 from configuration.configuration_window_move import mousePressEvent, window_move
+from view.standar.client.viewmain import Viewmainclient
 from view.standar.inventory.viewmain import Viewmaininventory
 from view.standar.invoice.viewmain import Viewmaininvoice
 from view.standar.user.viewmain import Viewmainuser
@@ -55,6 +56,7 @@ class Viewdashboardstandar(QtWidgets.QMainWindow):
         self.btn_user.clicked.connect(self.user)
         self.bt_exit_session.clicked.connect(self.exit_session)
         self.btn_invoice.clicked.connect(self.invoice)
+        self.btn_client.clicked.connect(self.client)
 
     def exit_session(self):
         self.close()
@@ -74,6 +76,10 @@ class Viewdashboardstandar(QtWidgets.QMainWindow):
     def invoice(self):
         self.invoice_view = Viewmaininvoice(self.id_user, self.user_name)
         self.invoice_view.show()
+
+    def client(self):
+        self.client_view = Viewmainclient()
+        self.client_view.show()
 
 
 if __name__ == "__main__":

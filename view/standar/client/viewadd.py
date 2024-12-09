@@ -21,7 +21,7 @@ class Viewadd(QtWidgets.QMainWindow):
     def __init__(self):
         super(Viewadd, self).__init__()
         self.theme = load_config(self)  # Lee la configuración al iniciar
-        loadUi(f"design/admin/mainclientadd{self.theme}.ui", self)
+        loadUi(f"design/standar/mainclientadd{self.theme}.ui", self)
 
         set_default_size_and_center(self)
         icon_configurate_top(self)

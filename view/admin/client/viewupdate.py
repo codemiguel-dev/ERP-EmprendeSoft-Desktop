@@ -19,7 +19,7 @@ from controller.controllerclient import ClientController
 
 class Viewupdate(QtWidgets.QMainWindow):
 
-    def __init__(self, uid, name, lastname, email, fono, address, typeclient, image):
+    def __init__(self, uid, name, lastname, email, fono, address, typeclient):
         super(Viewupdate, self).__init__()
         self.theme = load_config(self)  # Lee la configuración al iniciar
         loadUi(f"design/admin/mainclientupdate{self.theme}.ui", self)

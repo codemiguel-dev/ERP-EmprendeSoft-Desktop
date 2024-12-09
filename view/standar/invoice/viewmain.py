@@ -79,9 +79,9 @@ class Viewmaininvoice(QtWidgets.QMainWindow):
         self.btn_add_cart.clicked.connect(self.add_cart)
         self.btn_delete.clicked.connect(self.delete_product)
         self.btn_get_code.clicked.connect(self.get_code)
-        self.btn_register_sale.clicked.connect(self.add_sale)
+        self.btn_register_sale.clicked.connect(lambda: self.add_sale(self.id_user))
         self.btn_exit.clicked.connect(self.close_program)
-        self.btn_export_pdf.clicked.connect(self.export_pdf)
+        self.btn_export_pdf.clicked.connect(lambda: self.export_pdf(self.id_user))
 
     def close_program(self):
         QApplication.quit()
@@ -340,8 +340,9 @@ class Viewmaininvoice(QtWidgets.QMainWindow):
         # Establecer el código en el campo de texto codetxt
         self.codetxt.setText(code)
 
-    def add_sale(self):
-        user = self.comboboxuser.currentData()  # obtiene id
+    def add_sale(self, id_user):
+        self.user_id = id_user
+        user = self.user_id  # obtiene id
         client = self.comboboxclient.currentData()  # obtiene id
         product = self.comboboxproduct.currentData()  # obtiene id
         total = self.totalpricetxt.text()
@@ -394,9 +395,10 @@ class Viewmaininvoice(QtWidgets.QMainWindow):
             self, "Información", "Venta ingresada en la base de datos."
         )
 
-        self.export_pdf()
+        self.export_pdf(id_user)
 
-    def export_pdf(self):
+    def export_pdf(self, id_user):
+        self.id_user = id_user
         # Obtener la fecha y hora actuales y formatearlas
         current_date = datetime.now().strftime("%Y%m%d_%H%M%S")
 
@@ -409,7 +411,7 @@ class Viewmaininvoice(QtWidgets.QMainWindow):
         width, height = letter
         self.sale_total = self.totalpricetxt.text()
         self.id_client = self.comboboxclient.currentData()
-        self.id_seller = self.comboboxuser.currentData()
+        self.id_seller = self.id_user
         self.id_voucher = self.codetxt.text()
 
         users = self.controlleruser.get_user()

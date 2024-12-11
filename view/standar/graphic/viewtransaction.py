@@ -60,7 +60,7 @@ class TransactionChart(QMainWindow):
         self.theme = load_config(self)  # Lee la configuración al iniciar
         # Cargar el diseño desde el archivo .ui
         loadUi(
-            f"design/admin/maingraphictransaction{self.theme}.ui", self
+            f"design/standar/maingraphictransaction{self.theme}.ui", self
         )  # Asegúrate de que el archivo esté en el mismo directorio
 
         icon_configurate_top(self)

@@ -1,12 +1,10 @@
 import sqlite3
-from configuration.configuration_message import show_message
-
 
 import bcrypt
 from passlib.hash import bcrypt as passlib_bcrypt
 
+from configuration.configuration_message import show_message
 from models.connect import connect_to_database
-from view.standar.viewdashboard import Viewdashboardstandar
 
 
 class ModelTransaction:
@@ -80,9 +78,7 @@ class ModelTransaction:
                     )
 
             except sqlite3.Error as e:
-                show_message(
-                    "Error", f"No se pudo actualizar la base de datos: {e}"
-                )
+                show_message("Error", f"No se pudo actualizar la base de datos: {e}")
             finally:
                 conn.close()
         else:

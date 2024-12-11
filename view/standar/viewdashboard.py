@@ -17,10 +17,12 @@ from configuration.configuration_window_move import mousePressEvent, window_move
 from view.standar.client.viewmain import Viewmainclient
 from view.standar.graphic.viewexpenses import ExpensesChart
 from view.standar.graphic.viewsale import SaleChart
+from view.standar.graphic.viewtransaction import TransactionChart
 from view.standar.inventory.viewmain import Viewmaininventory
 from view.standar.invoice.viewmain import Viewmaininvoice
 from view.standar.print_sale.viewmain import PDFViewer
 from view.standar.provider.viewmain import Viewmainprovider
+from view.standar.transaction.viewmain import Viewmaintransaction
 from view.standar.user.viewmain import Viewmainuser
 
 
@@ -65,6 +67,8 @@ class Viewdashboardstandar(QtWidgets.QMainWindow):
         self.g_expenses.clicked.connect(self.graphic_expenses)
         self.btn_pdf.clicked.connect(self.print_pdf)
         self.btn_provider.clicked.connect(self.provider)
+        self.g_transaction.clicked.connect(self.graphic_transaction)
+        self.btn_transaction.clicked.connect(self.transaction)
 
     def exit_session(self):
         self.close()
@@ -97,6 +101,10 @@ class Viewdashboardstandar(QtWidgets.QMainWindow):
         self.graphic_expenses_view = ExpensesChart()
         self.graphic_expenses_view.show()
 
+    def graphic_transaction(self):
+        self.graphic_transaction_view = TransactionChart()
+        self.graphic_transaction_view.show()
+
     def print_pdf(self):
         self.pdf_view = PDFViewer()
         self.pdf_view.show()
@@ -104,6 +112,10 @@ class Viewdashboardstandar(QtWidgets.QMainWindow):
     def provider(self):
         self.provider_view = Viewmainprovider()
         self.provider_view.show()
+
+    def transaction(self):
+        self.trans_view = Viewmaintransaction()
+        self.trans_view.show()
 
 
 if __name__ == "__main__":

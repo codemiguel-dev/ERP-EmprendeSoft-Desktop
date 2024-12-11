@@ -30,7 +30,7 @@ class Viewmainproject(QtWidgets.QMainWindow):
     def __init__(self):
         super(Viewmainproject, self).__init__()
         self.theme = load_config(self)  # Lee la configuración al iniciar
-        loadUi(f"design/admin/mainproject{self.theme}.ui", self)
+        loadUi(f"design/standar/mainproject{self.theme}.ui", self)
 
         icon_configurate_manager(self)
         icon_configurate_top(self)

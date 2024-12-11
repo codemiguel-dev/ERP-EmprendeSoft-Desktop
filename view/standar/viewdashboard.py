@@ -21,6 +21,7 @@ from view.standar.graphic.viewtransaction import TransactionChart
 from view.standar.inventory.viewmain import Viewmaininventory
 from view.standar.invoice.viewmain import Viewmaininvoice
 from view.standar.print_sale.viewmain import PDFViewer
+from view.standar.project.viewmain import Viewmainproject
 from view.standar.provider.viewmain import Viewmainprovider
 from view.standar.transaction.viewmain import Viewmaintransaction
 from view.standar.user.viewmain import Viewmainuser
@@ -69,6 +70,7 @@ class Viewdashboardstandar(QtWidgets.QMainWindow):
         self.btn_provider.clicked.connect(self.provider)
         self.g_transaction.clicked.connect(self.graphic_transaction)
         self.btn_transaction.clicked.connect(self.transaction)
+        self.btn_project.clicked.connect(self.project)
 
     def exit_session(self):
         self.close()
@@ -116,6 +118,10 @@ class Viewdashboardstandar(QtWidgets.QMainWindow):
     def transaction(self):
         self.trans_view = Viewmaintransaction()
         self.trans_view.show()
+
+    def project(self):
+        self.project_view = Viewmainproject()
+        self.project_view.show()
 
 
 if __name__ == "__main__":

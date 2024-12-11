@@ -19,7 +19,7 @@ def icons_dash_buttom(self):
     self.btn_transaction.setIcon(QIcon("img/transaction.png"))
     self.g_transaction.setIcon(QIcon("img/analytics.png"))
     self.btn_project.setIcon(QIcon("img/project.png"))
-    self.btn_sell.setIcon(QIcon("img/send.png"))
+    self.btn_sent.setIcon(QIcon("img/send.png"))
     self.btn_investement.setIcon(QIcon("img/income.png"))
     self.g_investement.setIcon(QIcon("img/line-chart.png"))
     self.btn_task.setIcon(QIcon("img/homework.png"))

@@ -30,11 +30,11 @@ class Viewmainsent(QtWidgets.QMainWindow):
     def __init__(self):
         super(Viewmainsent, self).__init__()
         self.theme = load_config(self)  # Lee la configuración al iniciar
-        loadUi(f"design/admin/mainsent{self.theme}.ui", self)
+        loadUi(f"design/standar/mainsent{self.theme}.ui", self)
 
         icon_excel(self)
         icon_exit_program(self)
-        icon_configurate_manager(self)
+        # icon_configurate_manager(self)
         icon_configurate_top(self)
         delete_banner(self)
 

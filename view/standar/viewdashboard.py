@@ -16,6 +16,7 @@ from configuration.configuration_delete_banner import delete_banner
 from configuration.configuration_window_move import mousePressEvent, window_move
 from view.standar.client.viewmain import Viewmainclient
 from view.standar.graphic.viewexpenses import ExpensesChart
+from view.standar.graphic.viewinvestment import InvestmentChart
 from view.standar.graphic.viewsale import SaleChart
 from view.standar.graphic.viewtransaction import TransactionChart
 from view.standar.inventory.viewmain import Viewmaininventory
@@ -23,6 +24,7 @@ from view.standar.invoice.viewmain import Viewmaininvoice
 from view.standar.print_sale.viewmain import PDFViewer
 from view.standar.project.viewmain import Viewmainproject
 from view.standar.provider.viewmain import Viewmainprovider
+from view.standar.sent.viewmain import Viewmainsent
 from view.standar.transaction.viewmain import Viewmaintransaction
 from view.standar.user.viewmain import Viewmainuser
 
@@ -71,6 +73,8 @@ class Viewdashboardstandar(QtWidgets.QMainWindow):
         self.g_transaction.clicked.connect(self.graphic_transaction)
         self.btn_transaction.clicked.connect(self.transaction)
         self.btn_project.clicked.connect(self.project)
+        self.btn_sent.clicked.connect(self.sent)
+        self.g_investement.clicked.connect(self.graphic_investement)
 
     def exit_session(self):
         self.close()
@@ -122,6 +126,14 @@ class Viewdashboardstandar(QtWidgets.QMainWindow):
     def project(self):
         self.project_view = Viewmainproject()
         self.project_view.show()
+
+    def sent(self):
+        self.sent_view = Viewmainsent()
+        self.sent_view.show()
+
+    def graphic_investement(self):
+        self.graphic_invest_view = InvestmentChart()
+        self.graphic_investement_view.show()
 
 
 if __name__ == "__main__":

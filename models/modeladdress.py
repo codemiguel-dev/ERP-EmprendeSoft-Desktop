@@ -1,12 +1,11 @@
 import sqlite3
-from configuration.configuration_message import show_message
 
 import bcrypt
 from geopy.geocoders import Nominatim
 from passlib.hash import bcrypt as passlib_bcrypt
 
+from configuration.configuration_message import show_message
 from models.connect import connect_to_database
-from view.standar.viewdashboard import Viewdashboardstandar
 
 
 class ModelAddress:
@@ -21,7 +20,9 @@ class ModelAddress:
         location = geolocator.geocode(full_address)
 
         if location is None:
-            show_message("Error", "No se pudieron obtener las coordenadas de la dirección.")
+            show_message(
+                "Error", "No se pudieron obtener las coordenadas de la dirección."
+            )
             return
 
         latitude = location.latitude
@@ -76,12 +77,12 @@ class ModelAddress:
                     )
 
                     conn.commit()
-                    show_message("Información", "Actualización realizada en la base de datos.")
+                    show_message(
+                        "Información", "Actualización realizada en la base de datos."
+                    )
 
             except sqlite3.Error as e:
-                show_message(
-                    "Error", f"No se pudo actualizar la base de datos: {e}"
-                )
+                show_message("Error", f"No se pudo actualizar la base de datos: {e}")
             finally:
                 conn.close()
         else:

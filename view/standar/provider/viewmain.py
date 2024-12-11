@@ -31,9 +31,9 @@ class Viewmainprovider(QtWidgets.QMainWindow):
     def __init__(self):
         super(Viewmainprovider, self).__init__()
         self.theme = load_config(self)  # Lee la configuración al iniciar
-        loadUi(f"design/admin/mainprovider{self.theme}.ui", self)
+        loadUi(f"design/standar/mainprovider{self.theme}.ui", self)
 
-        icon_configurate_manager(self)
+        # icon_configurate_manager(self)
         icon_configurate_top(self)
         icon_exit_program(self)
         icon_excel(self)
@@ -60,7 +60,6 @@ class Viewmainprovider(QtWidgets.QMainWindow):
         self.btn_add.clicked.connect(self.add)
         self.btn_get.clicked.connect(self.show_provider)
         self.btn_update.clicked.connect(self.update)
-        self.btn_delete.clicked.connect(self.delete)
         self.btn_excel.clicked.connect(self.export_excel)
         self.btn_search.clicked.connect(self.search)
         self.btn_exit.clicked.connect(self.close_program)
@@ -179,40 +178,6 @@ class Viewmainprovider(QtWidgets.QMainWindow):
         else:
             QtWidgets.QMessageBox.warning(
                 self, "Error", "Por favor, seleccione una fila para actualizar."
-            )
-
-    def delete(self):
-        # Obtener índice de la fila seleccionada
-        selected_row = self.table_provider.currentRow()
-
-        # Verificar si se ha seleccionado una fila
-        if selected_row != -1:
-            uid_item = self.table_provider.item(selected_row, 0)
-
-            if uid_item:
-                uid = uid_item.text()
-
-                # Cuadro de diálogo de confirmación
-                reply = QtWidgets.QMessageBox.question(
-                    self,
-                    "Confirmar eliminación",
-                    f"¿Estás seguro de que deseas eliminar el usuario con ID {uid}?",
-                    QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No,
-                    QtWidgets.QMessageBox.No,
-                )
-
-                # Si el usuario confirma, se procede a eliminar
-                if reply == QtWidgets.QMessageBox.Yes:
-                    self.controller.delete_user(uid)
-                    self.show_provider()
-                else:
-                    # Cancelar la eliminación
-                    QtWidgets.QMessageBox.information(
-                        self, "Cancelado", "La eliminación ha sido cancelada."
-                    )
-        else:
-            QtWidgets.QMessageBox.warning(
-                self, "Error", "Por favor, seleccione una fila para eliminar."
             )
 
     def export_excel(self):

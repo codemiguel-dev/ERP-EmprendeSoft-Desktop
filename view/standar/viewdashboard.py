@@ -19,6 +19,7 @@ from view.standar.graphic.viewexpenses import ExpensesChart
 from view.standar.graphic.viewsale import SaleChart
 from view.standar.inventory.viewmain import Viewmaininventory
 from view.standar.invoice.viewmain import Viewmaininvoice
+from view.standar.print_sale.viewmain import PDFViewer
 from view.standar.user.viewmain import Viewmainuser
 
 
@@ -61,6 +62,7 @@ class Viewdashboardstandar(QtWidgets.QMainWindow):
         self.btn_client.clicked.connect(self.client)
         self.g_income.clicked.connect(self.graphic_income)
         self.g_expenses.clicked.connect(self.graphic_expenses)
+        self.btn_pdf.clicked.connect(self.print_pdf)
 
     def exit_session(self):
         self.close()
@@ -92,6 +94,10 @@ class Viewdashboardstandar(QtWidgets.QMainWindow):
     def graphic_expenses(self):
         self.graphic_expenses_view = ExpensesChart()
         self.graphic_expenses_view.show()
+
+    def print_pdf(self):
+        self.pdf_view = PDFViewer()
+        self.pdf_view.show()
 
 
 if __name__ == "__main__":

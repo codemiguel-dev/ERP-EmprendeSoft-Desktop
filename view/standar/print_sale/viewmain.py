@@ -35,7 +35,7 @@ class PDFViewer(QMainWindow):
     def __init__(self):
         super(PDFViewer, self).__init__()
         self.theme = load_config(self)  # Lee la configuración al iniciar
-        loadUi(f"design/admin/mainprintsale{self.theme}.ui", self)
+        loadUi(f"design/standar/mainprintsale{self.theme}.ui", self)
         self.setGeometry(100, 100, 800, 600)
 
         set_default_size_and_center(self)

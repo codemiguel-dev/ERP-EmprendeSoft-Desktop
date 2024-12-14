@@ -20,6 +20,7 @@ from view.standar.graphic.viewinvestment import InvestmentChart
 from view.standar.graphic.viewsale import SaleChart
 from view.standar.graphic.viewtransaction import TransactionChart
 from view.standar.inventory.viewmain import Viewmaininventory
+from view.standar.investment.viewmain import Viewmaininvestment
 from view.standar.invoice.viewmain import Viewmaininvoice
 from view.standar.print_sale.viewmain import PDFViewer
 from view.standar.project.viewmain import Viewmainproject
@@ -75,6 +76,7 @@ class Viewdashboardstandar(QtWidgets.QMainWindow):
         self.btn_project.clicked.connect(self.project)
         self.btn_sent.clicked.connect(self.sent)
         self.g_investement.clicked.connect(self.graphic_investement)
+        self.btn_investement.clicked.connect(self.investement)
 
     def exit_session(self):
         self.close()
@@ -131,9 +133,13 @@ class Viewdashboardstandar(QtWidgets.QMainWindow):
         self.sent_view = Viewmainsent()
         self.sent_view.show()
 
+    def investement(self):
+        self.inv_view = Viewmaininvestment()
+        self.inv_view.show()
+
     def graphic_investement(self):
         self.graphic_invest_view = InvestmentChart()
-        self.graphic_investement_view.show()
+        self.graphic_invest_view.show()
 
 
 if __name__ == "__main__":

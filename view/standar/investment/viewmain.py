@@ -30,7 +30,7 @@ class Viewmaininvestment(QtWidgets.QMainWindow):
     def __init__(self):
         super(Viewmaininvestment, self).__init__()
         self.theme = load_config(self)  # Lee la configuración al iniciar
-        loadUi(f"design/admin/maininvestment{self.theme}.ui", self)
+        loadUi(f"design/standar/maininvestment{self.theme}.ui", self)
 
         delete_banner(self)
 
@@ -53,15 +53,11 @@ class Viewmaininvestment(QtWidgets.QMainWindow):
         self.bt_cerrar.clicked.connect(lambda: self.close())
         self.bt_maximizar.hide()
 
-        icon_configurate_manager(self)
         icon_configurate_top(self)
         icon_excel(self)
         icon_exit_program(self)
 
-        self.btn_add.clicked.connect(self.add)
         self.btn_get.clicked.connect(self.show)
-        self.btn_update.clicked.connect(self.update)
-        self.btn_delete.clicked.connect(self.delete)
         self.btn_excel.clicked.connect(self.export_excel)
         self.btn_search.clicked.connect(self.search)
         self.btn_exit.clicked.connect(self.close_program)
@@ -76,10 +72,6 @@ class Viewmaininvestment(QtWidgets.QMainWindow):
         self.close()  # Cierra la ventana actual
         self.__init__()  # Re-inicia la vista con el nuevo tema
         self.show()  # Vuelve a mostrar la ventana
-
-    def add(self):
-        self.investment_add = Viewadd()
-        self.investment_add.show()
 
     def show(self):
         # Obtener datos de usuarios desde el controlador
@@ -128,82 +120,6 @@ class Viewmaininvestment(QtWidgets.QMainWindow):
                 print(
                     f"Error: Se esperaba una tupla, pero se encontró un valor único:sentnt"
                 )
-
-    def update(self):
-        # Obtener índice de la fila seleccionada
-        selected_row = self.table_investment.currentRow()
-
-        # Verificar si se ha seleccionado una fila
-        if selected_row != -1:
-            uid_item = self.table_investment.item(selected_row, 0)
-            type_item = self.table_investment.item(selected_row, 1)
-            date_item = self.table_investment.item(selected_row, 2)
-            amount_item = self.table_investment.item(selected_row, 3)
-            amount_end_item = self.table_investment.item(selected_row, 4)
-            yields_item = self.table_investment.item(selected_row, 5)
-            date_expiration_item = self.table_investment.item(selected_row, 6)
-
-            if (
-                uid_item
-                and type_item
-                and amount_item
-                and amount_end_item
-                and yields_item
-                and date_expiration_item
-            ):
-                uid = uid_item.text()
-                types = type_item.text()
-                date = date_item.text()
-                amount = amount_item.text()
-                amount_end = amount_end_item.text()
-                yields = yields_item.text()
-                date_expiration = date_expiration_item.text()
-
-                # Abrir el nuevo formulario de actualización
-                self.update_form = Viewupdate(
-                    uid, types, date, amount, amount_end, yields, date_expiration
-                )
-                self.update_form.show()
-                self.show()
-        else:
-            QtWidgets.QMessageBox.warning(
-                self, "Error", "Por favor, seleccione una fila para actualizar."
-            )
-
-    def delete(self):
-        # Obtener índice de la fila seleccionada
-        selected_row = self.table_investment.currentRow()
-
-        # Verificar si se ha seleccionado una fila
-        if selected_row != -1:
-            uid_item = self.table_investment.item(selected_row, 0)
-
-            if uid_item:
-                uid = uid_item.text()
-
-                # Cuadro de diálogo de confirmación
-                reply = QtWidgets.QMessageBox.question(
-                    self,
-                    "Confirmar eliminación",
-                    f"¿Estás seguro de que deseas eliminar el usuario con ID {uid}?",
-                    QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No,
-                    QtWidgets.QMessageBox.No,
-                )
-
-                # Si el usuario confirma, se procede a eliminar
-                if reply == QtWidgets.QMessageBox.Yes:
-                    self.controller.delete(uid)
-                    self.show()
-                else:
-                    # Cancelar la eliminación
-                    QtWidgets.QMessageBox.information(
-                        self, "Cancelado", "La eliminación ha sido cancelada."
-                    )
-
-        else:
-            QtWidgets.QMessageBox.warning(
-                self, "Error", "Por favor, seleccione una fila para actualizar."
-            )
 
     def export_excel(self):
         # Obtener datos de usuarios desde el controlador

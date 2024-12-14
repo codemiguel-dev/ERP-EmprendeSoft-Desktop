@@ -1160,7 +1160,7 @@ font: 20pt &quot;MS Shell Dlg 2&quot;;</string>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QPushButton" name="btn_sell">
+                    <widget class="QPushButton" name="btn_sent">
                      <property name="minimumSize">
                       <size>
                        <width>100</width>

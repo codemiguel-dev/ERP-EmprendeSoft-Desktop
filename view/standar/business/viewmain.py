@@ -28,9 +28,8 @@ class Viewmainbusiness(QtWidgets.QMainWindow):
     def __init__(self):
         super(Viewmainbusiness, self).__init__()
         self.theme = load_config(self)  # Lee la configuración al iniciar
-        loadUi(f"design/admin/mainbusiness{self.theme}.ui", self)
+        loadUi(f"design/standar/mainbusiness{self.theme}.ui", self)
 
-        icon_configurate_manager(self)
         icon_configurate_top(self)
         icon_exit_program(self)
         delete_banner(self)
@@ -54,10 +53,7 @@ class Viewmainbusiness(QtWidgets.QMainWindow):
         self.bt_cerrar.clicked.connect(lambda: self.close())
         self.bt_maximizar.hide()
 
-        self.btn_add.clicked.connect(self.add)
         self.btn_get.clicked.connect(self.show)
-        self.btn_update.clicked.connect(self.update)
-        self.btn_delete.clicked.connect(self.delete)
         self.btn_exit.clicked.connect(self.close_program)
 
         self.controller = BusinessController(self)
@@ -73,10 +69,6 @@ class Viewmainbusiness(QtWidgets.QMainWindow):
         self.close()  # Cierra la ventana actual
         self.__init__()  # Re-inicia la vista con el nuevo tema
         self.show()  # Vuelve a mostrar la ventana
-
-    def add(self):
-        self.business_add = Viewadd()
-        self.business_add.show()
 
     def show(self):
         # Obtener datos desde el controlador (usando el INNER JOIN)
@@ -128,71 +120,6 @@ class Viewmainbusiness(QtWidgets.QMainWindow):
         buffer.open(QIODevice.ReadOnly)
         pixmap.loadFromData(buffer.data())
         return pixmap
-
-    def update(self):
-        # Obtener datos desde el controlador (usando el INNER JOIN)
-        Business_controller = self.controller.get()
-
-        for i, business in enumerate(Business_controller):
-            if isinstance(business, (tuple, list)):
-                # Asignar los datos a los QLabel correspondientes
-                self.id = business[0]
-                self.name = business[1]
-                self.image = business[2]
-                self.num_legal = business[3]
-                self.industry = business[4]
-                self.num_registro = business[5]
-                self.date_founding = business[6]
-                self.id_address = business[7]
-                self.country = business[8]
-                self.region = business[9]
-                self.commune = business[10]
-                self.address = business[11]
-
-                break  # Mostrar un solo registro
-
-        # Abrir el nuevo formulario de actualización
-        self.update_form = Viewupdate(
-            self.id,
-            self.name,
-            self.num_legal,
-            self.industry,
-            self.num_registro,
-            self.date_founding,
-            self.id_address,
-            self.country,
-            self.region,
-            self.commune,
-            self.address,
-        )
-        self.update_form.show()
-
-    def delete(self):
-        Business_controller = self.controller.get()
-        for i, business in enumerate(Business_controller):
-            if isinstance(business, (tuple, list)):
-                # Asignar los datos a los QLabel correspondientes
-                self.id = business[0]
-                break  # Mostrar un solo registro
-
-        uid = self.id
-        reply = QMessageBox.question(
-            self,
-            "Confirmar eliminación",
-            "¿Estás seguro de que deseas eliminar este registro?",
-            QMessageBox.Yes | QMessageBox.No,
-            QMessageBox.No,
-        )
-        if reply == QMessageBox.Yes:
-            self.controller.delete(uid)
-            QMessageBox.information(
-                self, "Información", "Registro eliminado correctamente."
-            )
-            self.show()
-        else:
-            QMessageBox.information(
-                self, "Información", "Operación de eliminación cancelada."
-            )
 
     def search(self):
         search_text = self.searchtxt.text().lower()  # Texto de búsqueda en minúsculas

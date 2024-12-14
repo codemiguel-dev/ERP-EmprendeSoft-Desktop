@@ -30,10 +30,9 @@ class Viewmaintask(QtWidgets.QMainWindow):
     def __init__(self):
         super(Viewmaintask, self).__init__()
         self.theme = load_config(self)  # Lee la configuración al iniciar
-        loadUi(f"design/admin/maintask{self.theme}.ui", self)
+        loadUi(f"design/standar/maintask{self.theme}.ui", self)
 
         delete_banner(self)
-        icon_configurate_manager(self)
         icon_configurate_top(self)
         icon_exit_program(self)
         icon_excel(self)
@@ -57,10 +56,7 @@ class Viewmaintask(QtWidgets.QMainWindow):
         self.bt_cerrar.clicked.connect(lambda: self.close())
         self.bt_maximizar.hide()
 
-        self.btn_add.clicked.connect(self.add)
         self.btn_get.clicked.connect(self.show)
-        self.btn_update.clicked.connect(self.update)
-        self.btn_delete.clicked.connect(self.delete)
         self.btn_excel.clicked.connect(self.export_excel)
         self.btn_search.clicked.connect(self.search)
         self.btn_exit.clicked.connect(self.close_program)

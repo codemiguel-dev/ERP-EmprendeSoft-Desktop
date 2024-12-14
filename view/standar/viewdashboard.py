@@ -14,7 +14,9 @@ from configuration.configuration_config_theme import load_config
 from configuration.configuration_dash_icon import icons_dash_buttom
 from configuration.configuration_delete_banner import delete_banner
 from configuration.configuration_window_move import mousePressEvent, window_move
+from view.standar.business.viewmain import Viewmainbusiness
 from view.standar.client.viewmain import Viewmainclient
+from view.standar.gain.viewmain import Viewmaingain
 from view.standar.graphic.viewexpenses import ExpensesChart
 from view.standar.graphic.viewinvestment import InvestmentChart
 from view.standar.graphic.viewsale import SaleChart
@@ -26,6 +28,7 @@ from view.standar.print_sale.viewmain import PDFViewer
 from view.standar.project.viewmain import Viewmainproject
 from view.standar.provider.viewmain import Viewmainprovider
 from view.standar.sent.viewmain import Viewmainsent
+from view.standar.task.viewmain import Viewmaintask
 from view.standar.transaction.viewmain import Viewmaintransaction
 from view.standar.user.viewmain import Viewmainuser
 
@@ -77,6 +80,9 @@ class Viewdashboardstandar(QtWidgets.QMainWindow):
         self.btn_sent.clicked.connect(self.sent)
         self.g_investement.clicked.connect(self.graphic_investement)
         self.btn_investement.clicked.connect(self.investement)
+        self.btn_task.clicked.connect(self.task)
+        self.btn_business.clicked.connect(self.business)
+        self.btn_gain.clicked.connect(self.gain)
 
     def exit_session(self):
         self.close()
@@ -136,6 +142,18 @@ class Viewdashboardstandar(QtWidgets.QMainWindow):
     def investement(self):
         self.inv_view = Viewmaininvestment()
         self.inv_view.show()
+
+    def task(self):
+        self.task_view = Viewmaintask()
+        self.task_view.show()
+
+    def business(self):
+        self.business_view = Viewmainbusiness()
+        self.business_view.show()
+
+    def gain(self):
+        self.gain_view = Viewmaingain()
+        self.gain_view.show()
 
     def graphic_investement(self):
         self.graphic_invest_view = InvestmentChart()

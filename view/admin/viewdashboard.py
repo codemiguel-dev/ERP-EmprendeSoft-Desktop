@@ -85,7 +85,7 @@ class Viewdashboradadmin(QtWidgets.QMainWindow):
         self.g_transaction.clicked.connect(self.graphi_transaction)
         self.g_investement.clicked.connect(self.graphi_investment)
         self.btn_project.clicked.connect(self.project)
-        self.btn_sell.clicked.connect(self.sent)
+        self.btn_sent.clicked.connect(self.sent)
         self.btn_investement.clicked.connect(self.investment)
         self.btn_task.clicked.connect(self.task)
         self.btn_goal.clicked.connect(self.goal)

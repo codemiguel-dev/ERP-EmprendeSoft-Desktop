@@ -18,6 +18,7 @@ from view.standar.business.viewmain import Viewmainbusiness
 from view.standar.client.viewmain import Viewmainclient
 from view.standar.gain.viewmain import Viewmaingain
 from view.standar.graphic.viewexpenses import ExpensesChart
+from view.standar.graphic.viewgain import GainChart
 from view.standar.graphic.viewinvestment import InvestmentChart
 from view.standar.graphic.viewsale import SaleChart
 from view.standar.graphic.viewtransaction import TransactionChart
@@ -83,6 +84,7 @@ class Viewdashboardstandar(QtWidgets.QMainWindow):
         self.btn_task.clicked.connect(self.task)
         self.btn_business.clicked.connect(self.business)
         self.btn_gain.clicked.connect(self.gain)
+        self.btn_calculate_gain.clicked.connect(self.graphic_gain)
 
     def exit_session(self):
         self.close()
@@ -154,6 +156,10 @@ class Viewdashboardstandar(QtWidgets.QMainWindow):
     def gain(self):
         self.gain_view = Viewmaingain()
         self.gain_view.show()
+
+    def graphic_gain(self):
+        self.graphic_view_gain = GainChart()
+        self.graphic_view_gain.show()
 
     def graphic_investement(self):
         self.graphic_invest_view = InvestmentChart()

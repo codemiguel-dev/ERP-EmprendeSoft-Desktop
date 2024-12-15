@@ -57,7 +57,7 @@ class GainChart(QMainWindow):
         self.theme = load_config(self)  # Lee la configuración al iniciar
         # Cargar el diseño desde el archivo .ui
         loadUi(
-            f"design/admin/maingraphicgain{self.theme}.ui", self
+            f"design/standar/maingraphicgain{self.theme}.ui", self
         )  # Asegúrate de que el archivo esté en el mismo directorio
 
         icon_configurate_top(self)

@@ -17,6 +17,7 @@ from configuration.configuration_window_move import mousePressEvent, window_move
 from view.standar.business.viewmain import Viewmainbusiness
 from view.standar.client.viewmain import Viewmainclient
 from view.standar.gain.viewmain import Viewmaingain
+from view.standar.goal.viewmain import Viewmaingoals
 from view.standar.graphic.viewexpenses import ExpensesChart
 from view.standar.graphic.viewgain import GainChart
 from view.standar.graphic.viewinvestment import InvestmentChart
@@ -28,6 +29,7 @@ from view.standar.invoice.viewmain import Viewmaininvoice
 from view.standar.print_sale.viewmain import PDFViewer
 from view.standar.project.viewmain import Viewmainproject
 from view.standar.provider.viewmain import Viewmainprovider
+from view.standar.report.viewmain import Viewmainreport
 from view.standar.sent.viewmain import Viewmainsent
 from view.standar.task.viewmain import Viewmaintask
 from view.standar.transaction.viewmain import Viewmaintransaction
@@ -85,6 +87,8 @@ class Viewdashboardstandar(QtWidgets.QMainWindow):
         self.btn_business.clicked.connect(self.business)
         self.btn_gain.clicked.connect(self.gain)
         self.btn_calculate_gain.clicked.connect(self.graphic_gain)
+        self.btn_goal.clicked.connect(self.goal)
+        self.btn_report.clicked.connect(self.report)
 
     def exit_session(self):
         self.close()
@@ -160,6 +164,14 @@ class Viewdashboardstandar(QtWidgets.QMainWindow):
     def graphic_gain(self):
         self.graphic_view_gain = GainChart()
         self.graphic_view_gain.show()
+
+    def goal(self):
+        self.view_goal = Viewmaingoals()
+        self.view_goal.show()
+
+    def report(self):
+        self.view_report = Viewmainreport()
+        self.view_report.show()
 
     def graphic_investement(self):
         self.graphic_invest_view = InvestmentChart()

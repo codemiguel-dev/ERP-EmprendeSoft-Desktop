@@ -30,7 +30,7 @@ class Viewmaingoals(QtWidgets.QMainWindow):
     def __init__(self):
         super(Viewmaingoals, self).__init__()
         self.theme = load_config(self)  # Lee la configuración al iniciar
-        loadUi(f"design/admin/maingoal{self.theme}.ui", self)
+        loadUi(f"design/standar/maingoal{self.theme}.ui", self)
         delete_banner(self)
 
         # Inicializar el QSizeGrip y establecer su tamaño
@@ -52,15 +52,11 @@ class Viewmaingoals(QtWidgets.QMainWindow):
         self.bt_cerrar.clicked.connect(lambda: self.close())
         self.bt_maximizar.hide()
 
-        icon_configurate_manager(self)
         icon_configurate_top(self)
         icon_exit_program(self)
         icon_excel(self)
 
-        self.btn_add.clicked.connect(self.add)
         self.btn_get.clicked.connect(self.show)
-        self.btn_update.clicked.connect(self.update)
-        self.btn_delete.clicked.connect(self.delete)
         self.btn_excel.clicked.connect(self.export_excel)
         self.btn_search.clicked.connect(self.search)
         self.btn_exit.clicked.connect(self.close_program)
@@ -71,10 +67,6 @@ class Viewmaingoals(QtWidgets.QMainWindow):
 
     def close_program(self):
         QApplication.quit()
-
-    def add(self):
-        self.goal_add = Viewadd()
-        self.goal_add.show()
 
     def show(self):
         # Obtener datos desde el controlador (usando el INNER JOIN)
@@ -122,94 +114,6 @@ class Viewmaingoals(QtWidgets.QMainWindow):
                 print(
                     f"Error: Se esperaba una tupla, pero se encontró un valor único: {goal}"
                 )
-
-    def update(self):
-        # Obtener índice de la fila seleccionada
-        selected_row = self.table_goal.currentRow()
-
-        # Verificar si se ha seleccionado una fila
-        if selected_row != -1:
-            uid_goal_item = self.table_goal.item(selected_row, 0)  # id
-            name_goal_item = self.table_goal.item(selected_row, 1)  # name goal
-            descripcion_goal_item = self.table_goal.item(
-                selected_row, 2
-            )  # descripcion gaol
-            status_item = self.table_goal.item(selected_row, 3)  # status
-            start_date_item = self.table_goal.item(selected_row, 4)  # start_date
-            end_date_item = self.table_goal.item(selected_row, 5)  # end_date
-            id_business_item = self.table_goal.item(selected_row, 6)  # start_date
-            name_business_item = self.table_goal.item(selected_row, 7)  # end_date
-
-            if (
-                uid_goal_item
-                and name_goal_item
-                and descripcion_goal_item
-                and status_item
-                and start_date_item
-                and end_date_item
-                and id_business_item
-                and name_business_item
-            ):
-                uid_goal = uid_goal_item.text()
-                name_goal = name_goal_item.text()
-                description_goal = descripcion_goal_item.text()
-                status_goal = status_item.text()
-                start_date = start_date_item.text()
-                end_date = end_date_item.text()
-                id_business = id_business_item.text()
-                name_business = name_business_item.text()
-                # Abrir el nuevo formulario de actualización
-                self.update_form = Viewupdate(
-                    uid_goal,
-                    name_goal,
-                    description_goal,
-                    status_goal,
-                    start_date,
-                    end_date,
-                    id_business,
-                    name_business,
-                )
-                self.update_form.show()
-
-        else:
-            QtWidgets.QMessageBox.warning(
-                self, "Error", "Por favor, seleccione una fila para actualizar."
-            )
-
-    def delete(self):
-        # Obtener índice de la fila seleccionada
-        selected_row = self.table_goal.currentRow()
-
-        # Verificar si se ha seleccionado una fila
-        if selected_row != -1:
-            uid_item = self.table_goal.item(selected_row, 0)
-
-            if uid_item:
-                uid = uid_item.text()
-
-                # Cuadro de diálogo de confirmación
-                reply = QtWidgets.QMessageBox.question(
-                    self,
-                    "Confirmar eliminación",
-                    f"¿Estás seguro de que deseas eliminar el usuario con ID {uid}?",
-                    QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No,
-                    QtWidgets.QMessageBox.No,
-                )
-
-                # Si el usuario confirma, se procede a eliminar
-                if reply == QtWidgets.QMessageBox.Yes:
-                    self.controller.delete(uid)
-                    self.show()
-                else:
-                    # Cancelar la eliminación
-                    QtWidgets.QMessageBox.information(
-                        self, "Cancelado", "La eliminación ha sido cancelada."
-                    )
-
-        else:
-            QtWidgets.QMessageBox.warning(
-                self, "Error", "Por favor, seleccione una fila para actualizar."
-            )
 
     def export_excel(self):
         # Obtener datos de usuarios desde el controlador

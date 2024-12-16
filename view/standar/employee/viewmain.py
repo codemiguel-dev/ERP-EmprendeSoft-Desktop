@@ -32,9 +32,8 @@ class Viewmainemployee(QtWidgets.QMainWindow):
     def __init__(self):
         super(Viewmainemployee, self).__init__()
         self.theme = load_config(self)  # Lee la configuración al iniciar
-        loadUi(f"design/admin/mainemployee{self.theme}.ui", self)
+        loadUi(f"design/standar/mainemployee{self.theme}.ui", self)
 
-        icon_configurate_manager(self)
         icon_configurate_top(self)
         icon_exit_program(self)
         icon_excel(self)
@@ -58,10 +57,7 @@ class Viewmainemployee(QtWidgets.QMainWindow):
         self.bt_cerrar.clicked.connect(lambda: self.close())
         self.bt_maximizar.hide()
 
-        self.btn_add.clicked.connect(self.add)
         self.btn_get.clicked.connect(self.show)
-        self.btn_update.clicked.connect(self.update)
-        self.btn_delete.clicked.connect(self.delete)
         self.btn_excel.clicked.connect(self.export_excel)
         self.btn_search.clicked.connect(self.search)
         self.btn_maps.clicked.connect(self.maps)
@@ -73,10 +69,6 @@ class Viewmainemployee(QtWidgets.QMainWindow):
 
     def close_program(self):
         QApplication.quit()
-
-    def add(self):
-        self.address_add = Viewadd()
-        self.address_add.show()
 
     def maps(self):
         """Obtiene las coordenadas de latitud y longitud para una dirección dada y muestra el mapa."""
@@ -139,67 +131,6 @@ class Viewmainemployee(QtWidgets.QMainWindow):
                 print(
                     f"Error: Se esperaba una tupla, pero se encontró un valor único: {employee}"
                 )
-
-    def update(self):
-        # Obtener índice de la fila seleccionada
-        selected_row = self.table_employee.currentRow()
-
-        # Verificar si se ha seleccionado una fila
-        if selected_row != -1:
-            uid_item = self.table_employee.item(selected_row, 0)  # id
-            name_user_item = self.table_employee.item(selected_row, 1)  # name user
-            id_employee_item = self.table_employee.item(selected_row, 2)  # ID EMPLOYEE
-            job_item = self.table_employee.item(selected_row, 3)  #
-
-            if uid_item and name_user_item and job_item and id_employee_item:
-                uid = uid_item.text()
-                name_user = name_user_item.text()
-                id_employee = id_employee_item.text()
-                job = job_item.text()
-
-                # Abrir el nuevo formulario de actualización
-                self.update_form = Viewupdate(uid, name_user, id_employee, job)
-                self.update_form.show()
-                self.show()
-        else:
-            QtWidgets.QMessageBox.warning(
-                self, "Error", "Por favor, seleccione una fila para actualizar."
-            )
-
-    def delete(self):
-        # Obtener índice de la fila seleccionada
-        selected_row = self.table_employee.currentRow()
-
-        # Verificar si se ha seleccionado una fila
-        if selected_row != -1:
-            uid_item = self.table_employee.item(selected_row, 2)
-
-            if uid_item:
-                uid = uid_item.text()
-
-                # Cuadro de diálogo de confirmación
-                reply = QtWidgets.QMessageBox.question(
-                    self,
-                    "Confirmar eliminación",
-                    f"¿Estás seguro de que deseas eliminar el usuario con ID {uid}?",
-                    QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No,
-                    QtWidgets.QMessageBox.No,
-                )
-
-                # Si el usuario confirma, se procede a eliminar
-                if reply == QtWidgets.QMessageBox.Yes:
-                    self.controller.delete(uid)
-                    self.show()
-                else:
-                    # Cancelar la eliminación
-                    QtWidgets.QMessageBox.information(
-                        self, "Cancelado", "La eliminación ha sido cancelada."
-                    )
-
-        else:
-            QtWidgets.QMessageBox.warning(
-                self, "Error", "Por favor, seleccione una fila para actualizar."
-            )
 
     def export_excel(self):
         # Obtener datos de usuarios desde el controlador

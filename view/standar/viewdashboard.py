@@ -17,6 +17,7 @@ from configuration.configuration_window_move import mousePressEvent, window_move
 from view.standar.business.viewmain import Viewmainbusiness
 from view.standar.calendar.viewmain import Viewmaincalendar
 from view.standar.client.viewmain import Viewmainclient
+from view.standar.employee.viewmain import Viewmainemployee
 from view.standar.gain.viewmain import Viewmaingain
 from view.standar.goal.viewmain import Viewmaingoals
 from view.standar.graphic.viewexpenses import ExpensesChart
@@ -91,6 +92,7 @@ class Viewdashboardstandar(QtWidgets.QMainWindow):
         self.btn_goal.clicked.connect(self.goal)
         self.btn_report.clicked.connect(self.report)
         self.btn_calendar.clicked.connect(self.calendar)
+        self.btn_employee.clicked.connect(self.employee)
 
     def exit_session(self):
         self.close()
@@ -178,6 +180,10 @@ class Viewdashboardstandar(QtWidgets.QMainWindow):
     def calendar(self):
         self.view_calendar = Viewmaincalendar()
         self.view_calendar.show()
+
+    def employee(self):
+        self.view_employee = Viewmainemployee()
+        self.view_employee.show()
 
     def graphic_investement(self):
         self.graphic_invest_view = InvestmentChart()

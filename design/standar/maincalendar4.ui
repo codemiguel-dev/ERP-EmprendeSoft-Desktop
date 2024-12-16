@@ -294,7 +294,7 @@ QPushButton:hover{
 color: rgb(255, 255, 255);</string>
          </property>
          <property name="text">
-          <string>Administrar Horarios del trabajador</string>
+          <string>Horarios del trabajador</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>

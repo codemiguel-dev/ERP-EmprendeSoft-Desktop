@@ -15,6 +15,7 @@ from configuration.configuration_dash_icon import icons_dash_buttom
 from configuration.configuration_delete_banner import delete_banner
 from configuration.configuration_window_move import mousePressEvent, window_move
 from view.standar.business.viewmain import Viewmainbusiness
+from view.standar.calendar.viewmain import Viewmaincalendar
 from view.standar.client.viewmain import Viewmainclient
 from view.standar.gain.viewmain import Viewmaingain
 from view.standar.goal.viewmain import Viewmaingoals
@@ -89,6 +90,7 @@ class Viewdashboardstandar(QtWidgets.QMainWindow):
         self.btn_calculate_gain.clicked.connect(self.graphic_gain)
         self.btn_goal.clicked.connect(self.goal)
         self.btn_report.clicked.connect(self.report)
+        self.btn_calendar.clicked.connect(self.calendar)
 
     def exit_session(self):
         self.close()
@@ -172,6 +174,10 @@ class Viewdashboardstandar(QtWidgets.QMainWindow):
     def report(self):
         self.view_report = Viewmainreport()
         self.view_report.show()
+
+    def calendar(self):
+        self.view_calendar = Viewmaincalendar()
+        self.view_calendar.show()
 
     def graphic_investement(self):
         self.graphic_invest_view = InvestmentChart()

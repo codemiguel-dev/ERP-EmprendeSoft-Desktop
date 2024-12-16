@@ -30,9 +30,8 @@ class Viewmaincalendar(QtWidgets.QMainWindow):
     def __init__(self):
         super(Viewmaincalendar, self).__init__()
         self.theme = load_config(self)  # Lee la configuración al iniciar
-        loadUi(f"design/admin/maincalendar{self.theme}.ui", self)
+        loadUi(f"design/standar/maincalendar{self.theme}.ui", self)
 
-        icon_configurate_manager(self)
         icon_configurate_top(self)
         icon_excel(self)
         icon_exit_program(self)
@@ -57,10 +56,7 @@ class Viewmaincalendar(QtWidgets.QMainWindow):
         self.bt_cerrar.clicked.connect(lambda: self.close())
         self.bt_maximizar.hide()
 
-        self.btn_add.clicked.connect(self.add)
         self.btn_get.clicked.connect(self.show)
-        self.btn_update.clicked.connect(self.update)
-        self.btn_delete.clicked.connect(self.delete)
         self.btn_excel.clicked.connect(self.export_excel)
         self.btn_search.clicked.connect(self.search)
         self.btn_exit.clicked.connect(self.close_program)
@@ -71,10 +67,6 @@ class Viewmaincalendar(QtWidgets.QMainWindow):
 
     def close_program(self):
         QApplication.quit()
-
-    def add(self):
-        self.calendar_add_ = Viewadd()
-        self.calendar_add_.show()
 
     def show(self):
         # Obtener datos de usuarios desde el controlador
@@ -112,79 +104,6 @@ class Viewmaincalendar(QtWidgets.QMainWindow):
             self.table_calendar.setItem(
                 i, 5, QtWidgets.QTableWidgetItem(calendar[5])
             )  # Phone
-
-    def update(self):
-        # Obtener índice de la fila seleccionada
-        selected_row = self.table_calendar.currentRow()
-
-        # Verificar si se ha seleccionado una fila
-        if selected_row != -1:
-            name_employee_item = self.table_calendar.item(selected_row, 0)
-            job_item = self.table_calendar.item(selected_row, 1)
-            id_horary_item = self.table_calendar.item(selected_row, 2)
-            start_time_item = self.table_calendar.item(selected_row, 3)
-            end_time_item = self.table_calendar.item(selected_row, 4)
-            horary_item = self.table_calendar.item(selected_row, 5)
-
-            if (
-                name_employee_item
-                and id_horary_item
-                and job_item
-                and start_time_item
-                and end_time_item
-                and horary_item
-            ):
-                id_horary = id_horary_item.text()
-                name_employee = name_employee_item.text()
-                job = job_item.text()
-                start_time = start_time_item.text()
-                end_time = end_time_item.text()
-                horary = horary_item.text()
-                # Abrir el nuevo formulario de actualización
-                self.update_form = Viewupdate(
-                    id_horary, name_employee, start_time, end_time, horary
-                )
-                self.update_form.show()
-                self.show()
-        else:
-            QtWidgets.QMessageBox.warning(
-                self, "Error", "Por favor, seleccione una fila para actualizar."
-            )
-
-    def delete(self):
-        # Obtener índice de la fila seleccionada
-        selected_row = self.table_calendar.currentRow()
-
-        # Verificar si se ha seleccionado una fila
-        if selected_row != -1:
-            uid_item = self.table_calendar.item(selected_row, 2)
-
-            if uid_item:
-                uid = uid_item.text()
-
-                # Cuadro de diálogo de confirmación
-                reply = QtWidgets.QMessageBox.question(
-                    self,
-                    "Confirmar eliminación",
-                    f"¿Estás seguro de que deseas eliminar el usuario con ID {uid}?",
-                    QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No,
-                    QtWidgets.QMessageBox.No,
-                )
-
-                # Si el usuario confirma, se procede a eliminar
-                if reply == QtWidgets.QMessageBox.Yes:
-                    self.controller.delete(uid)
-                    self.show()
-                else:
-                    # Cancelar la eliminación
-                    QtWidgets.QMessageBox.information(
-                        self, "Cancelado", "La eliminación ha sido cancelada."
-                    )
-
-        else:
-            QtWidgets.QMessageBox.warning(
-                self, "Error", "Por favor, seleccione una fila para actualizar."
-            )
 
     def export_excel(self):
         # Obtener datos de usuarios desde el controlador

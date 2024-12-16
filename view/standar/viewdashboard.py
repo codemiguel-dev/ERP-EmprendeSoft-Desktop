@@ -29,6 +29,7 @@ from view.standar.graphic.viewtransaction import TransactionChart
 from view.standar.inventory.viewmain import Viewmaininventory
 from view.standar.investment.viewmain import Viewmaininvestment
 from view.standar.invoice.viewmain import Viewmaininvoice
+from view.standar.maps.viewmaps import MapaApp
 from view.standar.print_sale.viewmain import PDFViewer
 from view.standar.project.viewmain import Viewmainproject
 from view.standar.provider.viewmain import Viewmainprovider
@@ -95,6 +96,7 @@ class Viewdashboardstandar(QtWidgets.QMainWindow):
         self.btn_calendar.clicked.connect(self.calendar)
         self.btn_employee.clicked.connect(self.employee)
         self.btn_address.clicked.connect(self.address)
+        self.btn_maps.clicked.connect(self.maps)
 
     def exit_session(self):
         self.close()
@@ -190,6 +192,14 @@ class Viewdashboardstandar(QtWidgets.QMainWindow):
     def address(self):
         self.view_address = Viewmainaddress()
         self.view_address.show()
+
+    def maps(self):
+
+        #   santiago de chile
+        self.lat = -30.0000000
+        self.lon = -71.0000000
+        self.view_maps = MapaApp(self.lat, self.lon)
+        self.view_maps.show()
 
     def graphic_investement(self):
         self.graphic_invest_view = InvestmentChart()

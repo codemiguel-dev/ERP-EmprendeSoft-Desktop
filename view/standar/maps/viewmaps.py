@@ -18,7 +18,7 @@ from configuration.configuration_buttom_top import (
 from configuration.configuration_config_theme import load_config
 from controller.controlleraddress import AddressController
 from controller.controllercoordinate import CoordinateController
-from view.admin.maps.viewmapsget import MapsAppGet
+from view.standar.maps.viewmapsget import MapsAppGet
 
 
 class CoordinateHandler(QObject):
@@ -37,7 +37,7 @@ class MapaApp(QMainWindow):
         super(MapaApp, self).__init__()
         self.theme = load_config(self)  # Leer configuración al iniciar
         loadUi(
-            f"design/admin/mainmap{self.theme}.ui", self
+            f"design/standar/mainmap{self.theme}.ui", self
         )  # Cargar diseño de Qt Designer
 
         icon_exit_program(self)

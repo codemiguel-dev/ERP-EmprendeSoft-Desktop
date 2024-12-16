@@ -32,9 +32,8 @@ class Viewmainaddress(QtWidgets.QMainWindow):
     def __init__(self):
         super(Viewmainaddress, self).__init__()
         self.theme = load_config(self)  # Lee la configuración al iniciar
-        loadUi(f"design/admin/mainaddress{self.theme}.ui", self)
+        loadUi(f"design/standar/mainaddress{self.theme}.ui", self)
 
-        icon_configurate_manager(self)
         icon_configurate_top(self)
         icon_exit_program(self)
         icon_excel(self)
@@ -62,7 +61,6 @@ class Viewmainaddress(QtWidgets.QMainWindow):
         self.btn_add.clicked.connect(self.add)
         self.btn_get.clicked.connect(self.show)
         self.btn_update.clicked.connect(self.update)
-        self.btn_delete.clicked.connect(self.delete)
         self.btn_excel.clicked.connect(self.export_excel)
         self.btn_search.clicked.connect(self.search)
         self.btn_maps.clicked.connect(self.maps)

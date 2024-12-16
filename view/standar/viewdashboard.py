@@ -14,6 +14,7 @@ from configuration.configuration_config_theme import load_config
 from configuration.configuration_dash_icon import icons_dash_buttom
 from configuration.configuration_delete_banner import delete_banner
 from configuration.configuration_window_move import mousePressEvent, window_move
+from view.standar.address.viewmain import Viewmainaddress
 from view.standar.business.viewmain import Viewmainbusiness
 from view.standar.calendar.viewmain import Viewmaincalendar
 from view.standar.client.viewmain import Viewmainclient
@@ -93,6 +94,7 @@ class Viewdashboardstandar(QtWidgets.QMainWindow):
         self.btn_report.clicked.connect(self.report)
         self.btn_calendar.clicked.connect(self.calendar)
         self.btn_employee.clicked.connect(self.employee)
+        self.btn_address.clicked.connect(self.address)
 
     def exit_session(self):
         self.close()
@@ -184,6 +186,10 @@ class Viewdashboardstandar(QtWidgets.QMainWindow):
     def employee(self):
         self.view_employee = Viewmainemployee()
         self.view_employee.show()
+
+    def address(self):
+        self.view_address = Viewmainaddress()
+        self.view_address.show()
 
     def graphic_investement(self):
         self.graphic_invest_view = InvestmentChart()

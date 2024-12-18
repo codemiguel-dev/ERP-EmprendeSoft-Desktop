@@ -49,6 +49,8 @@ class Viewdashboardstandar(QtWidgets.QMainWindow):
         self.id_user = id_user
         self.user_name = username
 
+        self.btn_profile.setIcon(QIcon("img/user-profile.svg"))
+
         icon_configurate_exit_session(self)
         icons_dash_buttom(self)
         delete_banner(self)

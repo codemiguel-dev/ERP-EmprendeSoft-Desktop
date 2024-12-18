@@ -37,6 +37,7 @@ from view.standar.report.viewmain import Viewmainreport
 from view.standar.sent.viewmain import Viewmainsent
 from view.standar.task.viewmain import Viewmaintask
 from view.standar.transaction.viewmain import Viewmaintransaction
+from view.standar.user.profile.viewmain import Viewmainuserprofile
 from view.standar.user.viewmain import Viewmainuser
 
 
@@ -99,6 +100,7 @@ class Viewdashboardstandar(QtWidgets.QMainWindow):
         self.btn_employee.clicked.connect(self.employee)
         self.btn_address.clicked.connect(self.address)
         self.btn_maps.clicked.connect(self.maps)
+        self.btn_profile.clicked.connect(self.profile)
 
     def exit_session(self):
         self.close()
@@ -194,6 +196,10 @@ class Viewdashboardstandar(QtWidgets.QMainWindow):
     def address(self):
         self.view_address = Viewmainaddress()
         self.view_address.show()
+
+    def profile(self):
+        self.view_profile = Viewmainuserprofile()
+        self.view_profile.show()
 
     def maps(self):
 

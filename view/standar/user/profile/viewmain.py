@@ -31,7 +31,6 @@ class Viewmainuserprofile(QtWidgets.QMainWindow):
         loadUi(f"design/standar/mainuserprofile{self.theme}.ui", self)
 
         icon_exit_program(self)
-        icon_excel(self)
         icon_configurate_top(self)
         delete_banner(self)
 

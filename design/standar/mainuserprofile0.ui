@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1303</width>
-    <height>795</height>
+    <width>555</width>
+    <height>748</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -337,7 +337,7 @@ color: rgb(255, 255, 255);</string>
              <number>50</number>
             </property>
             <property name="rightMargin">
-             <number>180</number>
+             <number>50</number>
             </property>
             <property name="bottomMargin">
              <number>150</number>
@@ -363,7 +363,7 @@ font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
              <widget class="QLineEdit" name="lineEdit">
               <property name="maximumSize">
                <size>
-                <width>16777215</width>
+                <width>500</width>
                 <height>30</height>
                </size>
               </property>
@@ -416,7 +416,7 @@ font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
              <widget class="QLineEdit" name="lineEdit_2">
               <property name="maximumSize">
                <size>
-                <width>16777215</width>
+                <width>500</width>
                 <height>30</height>
                </size>
               </property>
@@ -469,7 +469,7 @@ font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
              <widget class="QLineEdit" name="lineEdit_3">
               <property name="maximumSize">
                <size>
-                <width>16777215</width>
+                <width>500</width>
                 <height>30</height>
                </size>
               </property>

@@ -325,7 +325,7 @@ color: rgb(255, 255, 255);</string>
           <item>
            <layout class="QVBoxLayout" name="verticalLayout_4">
             <property name="spacing">
-             <number>20</number>
+             <number>10</number>
             </property>
             <property name="sizeConstraint">
              <enum>QLayout::SetMinAndMaxSize</enum>
@@ -334,7 +334,7 @@ color: rgb(255, 255, 255);</string>
              <number>50</number>
             </property>
             <property name="topMargin">
-             <number>60</number>
+             <number>50</number>
             </property>
             <property name="rightMargin">
              <number>180</number>
@@ -397,6 +397,12 @@ border: 2px solid rgb(120, 0, 171);
             </item>
             <item>
              <widget class="QLabel" name="label_3">
+              <property name="maximumSize">
+               <size>
+                <width>200</width>
+                <height>25</height>
+               </size>
+              </property>
               <property name="styleSheet">
                <string notr="true">color: rgb(255, 255, 255);
 font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
@@ -444,6 +450,12 @@ border: 2px solid rgb(120, 0, 171);
             </item>
             <item>
              <widget class="QLabel" name="label_4">
+              <property name="maximumSize">
+               <size>
+                <width>200</width>
+                <height>25</height>
+               </size>
+              </property>
               <property name="styleSheet">
                <string notr="true">color: rgb(255, 255, 255);
 font: 16pt &quot;MS Shell Dlg 2&quot;;</string>

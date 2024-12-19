@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1303</width>
-    <height>773</height>
+    <height>795</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -325,30 +325,34 @@ color: rgb(255, 255, 255);</string>
           <item>
            <layout class="QVBoxLayout" name="verticalLayout_4">
             <property name="spacing">
-             <number>50</number>
+             <number>20</number>
+            </property>
+            <property name="sizeConstraint">
+             <enum>QLayout::SetMinAndMaxSize</enum>
             </property>
             <property name="leftMargin">
              <number>50</number>
             </property>
             <property name="topMargin">
-             <number>100</number>
+             <number>60</number>
             </property>
             <property name="rightMargin">
-             <number>50</number>
+             <number>180</number>
             </property>
             <property name="bottomMargin">
-             <number>181</number>
+             <number>150</number>
             </property>
             <item>
              <widget class="QLabel" name="label_2">
               <property name="maximumSize">
                <size>
-                <width>16777215</width>
+                <width>200</width>
                 <height>25</height>
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">color: rgb(255, 255, 255);</string>
+               <string notr="true">color: rgb(255, 255, 255);
+font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
               </property>
               <property name="text">
                <string>Nombre</string>
@@ -356,13 +360,134 @@ color: rgb(255, 255, 255);</string>
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit"/>
+             <widget class="QLineEdit" name="lineEdit">
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QLineEdit{
+background-color: rgba(0, 0, 0,0);
+border-radius:10px; 
+font: 12pt &quot;Arial&quot;;
+color: rgb(255, 255, 254);
+border: 2px solid  rgb(255, 255, 255);
+
+}
+
+QLineEdit:hover{
+background-color: rgba(0, 0, 0,0);
+border-radius:10px; 
+font: 12pt &quot;Arial&quot;;
+border: 2px solid  rgb(120, 0, 171);
+}
+
+QLineEdit:focus{
+background-color: rgb(0, 0, 0);
+border-radius:10px; 
+font: 12pt &quot;Arial&quot;;
+border: 2px solid rgb(120, 0, 171);
+}
+
+</string>
+              </property>
+             </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_2"/>
+             <widget class="QLabel" name="label_3">
+              <property name="styleSheet">
+               <string notr="true">color: rgb(255, 255, 255);
+font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
+              </property>
+              <property name="text">
+               <string>Correo</string>
+              </property>
+             </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_3"/>
+             <widget class="QLineEdit" name="lineEdit_2">
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QLineEdit{
+background-color: rgba(0, 0, 0,0);
+border-radius:10px; 
+font: 12pt &quot;Arial&quot;;
+color: rgb(255, 255, 254);
+border: 2px solid  rgb(255, 255, 255);
+
+}
+
+QLineEdit:hover{
+background-color: rgba(0, 0, 0,0);
+border-radius:10px; 
+font: 12pt &quot;Arial&quot;;
+border: 2px solid  rgb(120, 0, 171);
+}
+
+QLineEdit:focus{
+background-color: rgb(0, 0, 0);
+border-radius:10px; 
+font: 12pt &quot;Arial&quot;;
+border: 2px solid rgb(120, 0, 171);
+}
+
+</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_4">
+              <property name="styleSheet">
+               <string notr="true">color: rgb(255, 255, 255);
+font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
+              </property>
+              <property name="text">
+               <string>Contraseña</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="lineEdit_3">
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QLineEdit{
+background-color: rgba(0, 0, 0,0);
+border-radius:10px; 
+font: 12pt &quot;Arial&quot;;
+color: rgb(255, 255, 254);
+border: 2px solid  rgb(255, 255, 255);
+
+}
+
+QLineEdit:hover{
+background-color: rgba(0, 0, 0,0);
+border-radius:10px; 
+font: 12pt &quot;Arial&quot;;
+border: 2px solid  rgb(120, 0, 171);
+}
+
+QLineEdit:focus{
+background-color: rgb(0, 0, 0);
+border-radius:10px; 
+font: 12pt &quot;Arial&quot;;
+border: 2px solid rgb(120, 0, 171);
+}
+
+</string>
+              </property>
+             </widget>
             </item>
            </layout>
           </item>

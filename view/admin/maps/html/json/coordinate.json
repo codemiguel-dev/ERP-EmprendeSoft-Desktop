@@ -30,5 +30,13 @@
         "color": "Red",
         "description": "buenos aires",
         "status": "Pendiente"
+    },
+    {
+        "id": "6a95549a-8dfa-4af3-b42c-c9f90326df57",
+        "latitude": -33.45185,
+        "longitude": -70.66114,
+        "color": "Red",
+        "description": "ujhijhjk",
+        "status": "Pendiente"
     }
 ]

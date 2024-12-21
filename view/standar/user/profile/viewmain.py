@@ -25,10 +25,12 @@ from controller.controlleruser import UserController
 
 
 class Viewmainuserprofile(QtWidgets.QMainWindow):
-    def __init__(self):
+    def __init__(self, id_user):
         super(Viewmainuserprofile, self).__init__()
         self.theme = load_config(self)  # Lee la configuración al iniciar
         loadUi(f"design/standar/mainuserprofile{self.theme}.ui", self)
+
+        self.id_user = id_user
 
         icon_exit_program(self)
         icon_configurate_top(self)
@@ -53,5 +55,19 @@ class Viewmainuserprofile(QtWidgets.QMainWindow):
         self.bt_cerrar.clicked.connect(lambda: self.close())
         self.bt_maximizar.hide()
 
+        self.controlleruser = UserController(self)
+        self.get_user()
+
     def close_program(self):
         QApplication.quit()
+
+    def get_user(self):
+        # Llama al controlador para obtener los datos del usuario por ID
+        user = self.controlleruser.search_user(self.id_user)
+
+        if user:
+            # Asumiendo que el resultado es una tupla (id, nombre, correo, etc.)
+            self.nametxt.setText(user[2])  # Campo para el nombre
+            self.emailtxt.setText(user[4])  # Campo para el correo
+        else:
+            QMessageBox.warning(self, "Error", "Usuario no encontrado")

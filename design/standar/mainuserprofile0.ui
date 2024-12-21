@@ -360,7 +360,7 @@ font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit">
+             <widget class="QLineEdit" name="nametxt">
               <property name="maximumSize">
                <size>
                 <width>500</width>
@@ -413,7 +413,7 @@ font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_2">
+             <widget class="QLineEdit" name="emailtxt">
               <property name="maximumSize">
                <size>
                 <width>500</width>

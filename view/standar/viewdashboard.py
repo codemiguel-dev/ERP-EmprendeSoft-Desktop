@@ -198,7 +198,7 @@ class Viewdashboardstandar(QtWidgets.QMainWindow):
         self.view_address.show()
 
     def profile(self):
-        self.view_profile = Viewmainuserprofile()
+        self.view_profile = Viewmainuserprofile(self.id_user)
         self.view_profile.show()
 
     def maps(self):

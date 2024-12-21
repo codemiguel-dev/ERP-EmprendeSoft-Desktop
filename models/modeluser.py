@@ -1,10 +1,9 @@
 import os
-from configuration.configuration_message import show_message
-
 
 import bcrypt
 from passlib.hash import bcrypt as passlib_bcrypt
 
+from configuration.configuration_message import show_message
 from models.connect import connect_to_database
 
 
@@ -155,3 +154,17 @@ class ModelUser:
                 conn.close()
         else:
             show_message("Error", "No se pudo conectar a la base de datos.")
+
+    def get_user_by_id(self, user_id):
+        conn = connect_to_database()  # Conecta a la base de datos
+        cursor = conn.cursor()
+
+        # Consulta SQL para buscar un usuario por su ID
+        query = "SELECT * FROM user WHERE id = ?"
+        cursor.execute(query, (user_id,))
+
+        # Obtén el usuario (asumiendo que `id` es único)
+        user = cursor.fetchone()  # Usa fetchone() para un solo resultado
+
+        conn.close()  # Cierra la conexión
+        return user  # Devuelve el usuario encontrado o None si no existe

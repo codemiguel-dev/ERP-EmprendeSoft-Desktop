@@ -21,3 +21,6 @@ class UserController:
 
     def delete_user(self, uid):
         return self.model.delete(uid)
+
+    def search_user(self, uid):
+        return self.model.get_user_by_id(uid)

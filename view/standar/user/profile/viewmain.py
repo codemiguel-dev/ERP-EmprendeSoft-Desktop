@@ -70,6 +70,7 @@ class Viewmainuserprofile(QtWidgets.QMainWindow):
             # Asumiendo que el resultado es una tupla (id, nombre, correo, etc.)
             self.nametxt.setText(user[2])  # Campo para el nombre
             self.emailtxt.setText(user[4])  # Campo para el correo
+            self.phonetxt.setText(user[5])
         else:
             QMessageBox.warning(self, "Error", "Usuario no encontrado")
 
@@ -77,10 +78,10 @@ class Viewmainuserprofile(QtWidgets.QMainWindow):
         name = self.nametxt.text()
         password = self.passwordtxt.text()
         email = self.emailtxt.text()
-        fono = self.phonetxt.text()
+        phone = self.phonetxt.text()
 
-        if not name or not email or not fono:
+        if not name or not email or not phone:
             QMessageBox.warning(self, "Advertencia", "Ambos campos deben ser llenados.")
             return
 
-        self.controlleruser.update_profile(self.id_user, name, password, email, fono)
+        self.controlleruser.update_profile(self.id_user, name, email, phone, password)

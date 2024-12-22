@@ -642,7 +642,7 @@ border: 2px solid rgb(120, 0, 171);
 </string>
               </property>
               <property name="text">
-               <string>Actualizar Contraseña</string>
+               <string>Actualizar Datos</string>
               </property>
              </widget>
             </item>

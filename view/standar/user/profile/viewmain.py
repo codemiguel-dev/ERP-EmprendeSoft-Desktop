@@ -77,8 +77,18 @@ class Viewmainuserprofile(QtWidgets.QMainWindow):
     def update_profile(self):
         name = self.nametxt.text()
         password = self.passwordtxt.text()
+        password2 = self.passwordtxt2.text()
         email = self.emailtxt.text()
         phone = self.phonetxt.text()
+
+        # Validar que las contraseñas coincidan
+        if password != password2:
+            QMessageBox.warning(
+                self,
+                "Advertencia",
+                "Las contraseñas no coinciden. Por favor, intente de nuevo.",
+            )
+            return
 
         if not name or not email or not phone:
             QMessageBox.warning(self, "Advertencia", "Ambos campos deben ser llenados.")

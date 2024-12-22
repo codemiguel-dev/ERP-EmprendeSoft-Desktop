@@ -165,12 +165,16 @@ class ModelUser:
         conn.close()  # Cierra la conexión
         return user  # Devuelve el usuario encontrado o None si no existe
 
-    def update_profile(self, user_id, name, email, phone, password):
+    def update_profile(self, user_id, name, email, phone, password_new):
         conn = connect_to_database()
         if conn:
             try:
                 with conn:
                     cur = conn.cursor()
+                    # Cifra la contraseña antes de almacenarla
+                    hashed_password = bcrypt.hashpw(
+                        password_new.encode("utf-8"), bcrypt.gensalt()
+                    )
 
                     # Actualiza los datos del inventario existente
                     cur.execute(
@@ -181,7 +185,7 @@ class ModelUser:
                     """,
                         (
                             name,
-                            password,
+                            hashed_password,
                             email,
                             phone,
                             user_id,

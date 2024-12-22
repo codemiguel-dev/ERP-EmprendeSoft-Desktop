@@ -24,3 +24,6 @@ class UserController:
 
     def search_user(self, uid):
         return self.model.get_user_by_id(uid)
+
+    def update_profile(self, uid, name, email, phone, password):
+        return self.model.update_profile(uid, name, email, phone, password)

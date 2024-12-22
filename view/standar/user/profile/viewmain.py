@@ -53,6 +53,7 @@ class Viewmainuserprofile(QtWidgets.QMainWindow):
         self.bt_restaurar.clicked.connect(lambda: control_bt_normal(self))
         self.bt_maximizar.clicked.connect(lambda: control_bt_maximizar(self))
         self.bt_cerrar.clicked.connect(lambda: self.close())
+        self.btn_update_profile.clicked.connect(self.update_profile)
         self.bt_maximizar.hide()
 
         self.controlleruser = UserController(self)
@@ -71,3 +72,15 @@ class Viewmainuserprofile(QtWidgets.QMainWindow):
             self.emailtxt.setText(user[4])  # Campo para el correo
         else:
             QMessageBox.warning(self, "Error", "Usuario no encontrado")
+
+    def update_profile(self):
+        name = self.nametxt.text()
+        password = self.passwordtxt.text()
+        email = self.emailtxt.text()
+        fono = self.phonetxt.text()
+
+        if not name or not email or not fono:
+            QMessageBox.warning(self, "Advertencia", "Ambos campos deben ser llenados.")
+            return
+
+        self.controlleruser.update_profile(self.id_user, name, password, email, fono)

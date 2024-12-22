@@ -83,10 +83,6 @@ class ModelUser:
             try:
                 with conn:
                     cur = conn.cursor()
-                    # Cifra la contraseña antes de almacenarla
-                    hashed_password = bcrypt.hashpw(
-                        password.encode("utf-8"), bcrypt.gensalt()
-                    )
 
                     # Si se ha proporcionado una imagen
                     if image:
@@ -168,3 +164,35 @@ class ModelUser:
 
         conn.close()  # Cierra la conexión
         return user  # Devuelve el usuario encontrado o None si no existe
+
+    def update_profile(self, user_id, name, email, phone, password):
+        conn = connect_to_database()
+        if conn:
+            try:
+                with conn:
+                    cur = conn.cursor()
+
+                    # Actualiza los datos del inventario existente
+                    cur.execute(
+                        """
+                    UPDATE user 
+                    SET name = ?, password = ?, email = ?, contact_num = ?
+                    WHERE id = ?;
+                    """,
+                        (
+                            name,
+                            password,
+                            email,
+                            phone,
+                            user_id,
+                        ),
+                    )
+
+                    show_message(
+                        "Información", "Actualización realizada en la base de datos."
+                    )
+
+            finally:
+                conn.close()
+        else:
+            show_message("Error", "No se pudo conectar a la base de datos.")

@@ -121,7 +121,7 @@ class Viewdashboardstandar(QtWidgets.QMainWindow):
                 pixmap = QPixmap()
                 if pixmap.loadFromData(user_image):
                     # Redimensionar la imagen al tamaño deseado
-                    size = 100  # Tamaño deseado
+                    size = 40  # Tamaño deseado
                     scaled_pixmap = pixmap.scaled(
                         size,
                         size,
@@ -137,7 +137,13 @@ class Viewdashboardstandar(QtWidgets.QMainWindow):
                     self.imagelabelprofile.setIconSize(
                         QSize(size, size)
                     )  # Ajusta el tamaño del ícono
-                    self.imagelabelprofile.setPixmap(scaled_pixmap)
+                    self.imagelabelprofile.setIconSize(
+                        QSize(size, size)
+                    )  # Ajusta el tamaño del ícono
+                    self.imagelabelprofile.setIconSize(
+                        QSize(size, size)
+                    )  # Ajusta el tamaño del ícono
+
                     # Carga la imagen desde los datos binarios
 
                 else:

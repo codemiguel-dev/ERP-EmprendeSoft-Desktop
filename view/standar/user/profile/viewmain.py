@@ -113,6 +113,7 @@ class Viewmainuserprofile(QtWidgets.QMainWindow):
         password2 = self.passwordtxt2.text()
         email = self.emailtxt.text()
         phone = self.phonetxt.text()
+        image = self.imagetxt.text()
 
         # Validar que las contraseñas coincidan
         if password != password2:
@@ -127,4 +128,6 @@ class Viewmainuserprofile(QtWidgets.QMainWindow):
             QMessageBox.warning(self, "Advertencia", "Ambos campos deben ser llenados.")
             return
 
-        self.controlleruser.update_profile(self.id_user, name, email, phone, password)
+        self.controlleruser.update_profile(
+            self.id_user, name, email, phone, password, image
+        )

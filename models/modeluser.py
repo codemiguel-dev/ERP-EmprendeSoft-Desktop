@@ -165,12 +165,30 @@ class ModelUser:
         conn.close()  # Cierra la conexión
         return user  # Devuelve el usuario encontrado o None si no existe
 
-    def update_profile(self, user_id, name, email, phone, password_new):
+    def update_profile(self, user_id, name, email, phone, password_new, image):
         conn = connect_to_database()
         if conn:
             try:
                 with conn:
                     cur = conn.cursor()
+
+                    if image:
+                        try:
+                            # Verifica que image sea una ruta de archivo válida
+                            if not os.path.isfile(image):
+                                raise FileNotFoundError(
+                                    "La imagen seleccionada no se encontró."
+                                )
+                            with open(image, "rb") as file:
+                                image_data = file.read()
+                        except FileNotFoundError:
+                            show_message(
+                                "Error", "La imagen seleccionada no se encontró."
+                            )
+                            return
+                    else:
+                        image_data = None  # O puedes cargar una imagen por defecto
+
                     # Cifra la contraseña antes de almacenarla
                     hashed_password = bcrypt.hashpw(
                         password_new.encode("utf-8"), bcrypt.gensalt()
@@ -180,7 +198,7 @@ class ModelUser:
                     cur.execute(
                         """
                     UPDATE user 
-                    SET name = ?, password = ?, email = ?, contact_num = ?
+                    SET name = ?, password = ?, email = ?, contact_num = ?, image = ?
                     WHERE id = ?;
                     """,
                         (
@@ -188,6 +206,7 @@ class ModelUser:
                             hashed_password,
                             email,
                             phone,
+                            image_data,
                             user_id,
                         ),
                     )

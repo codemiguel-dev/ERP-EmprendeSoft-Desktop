@@ -1,7 +1,9 @@
 import sys
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtGui import QIcon
+from PyQt5.QtCore import QSize, Qt
+from PyQt5.QtGui import QIcon, QPixmap
+from PyQt5.QtWidgets import QMessageBox
 from PyQt5.uic import loadUi
 
 from configuration.configuration_buttom import icon_configurate_exit_session
@@ -14,6 +16,7 @@ from configuration.configuration_config_theme import load_config
 from configuration.configuration_dash_icon import icons_dash_buttom
 from configuration.configuration_delete_banner import delete_banner
 from configuration.configuration_window_move import mousePressEvent, window_move
+from controller.controlleruser import UserController
 from view.standar.address.viewmain import Viewmainaddress
 from view.standar.business.viewmain import Viewmainbusiness
 from view.standar.calendar.viewmain import Viewmaincalendar
@@ -101,6 +104,50 @@ class Viewdashboardstandar(QtWidgets.QMainWindow):
         self.btn_address.clicked.connect(self.address)
         self.btn_maps.clicked.connect(self.maps)
         self.btn_profile.clicked.connect(self.profile)
+
+        self.controlleruser = UserController(self)
+        self.get_image_profile()
+
+    def get_image_profile(self):
+        # Llama al controlador para obtener los datos del usuario por ID
+        user_data = self.controlleruser.get_image_profile(self.id_user)
+
+        if user_data:
+            # Asumiendo que el resultado es una tupla (id, nombre, correo, imagen_binaria, ...)
+            user_image = user_data[0]  # Suponiendo que la imagen está en el índice 3
+
+            if user_image:
+                # Convertir los datos binarios de la imagen en un QPixmap
+                pixmap = QPixmap()
+                if pixmap.loadFromData(user_image):
+                    # Redimensionar la imagen al tamaño deseado
+                    size = 100  # Tamaño deseado
+                    scaled_pixmap = pixmap.scaled(
+                        size,
+                        size,
+                        Qt.KeepAspectRatioByExpanding,
+                        Qt.SmoothTransformation,
+                    )
+
+                    # Crear un ícono a partir del pixmap
+                    icon = QIcon(scaled_pixmap)
+                    self.imagelabelprofile.setIcon(
+                        icon
+                    )  # Asigna el ícono al QPushButton
+                    self.imagelabelprofile.setIconSize(
+                        QSize(size, size)
+                    )  # Ajusta el tamaño del ícono
+                    self.imagelabelprofile.setPixmap(scaled_pixmap)
+                    # Carga la imagen desde los datos binarios
+
+                else:
+                    QMessageBox.warning(self, "Error", "No se pudo cargar la imagen")
+            else:
+                QMessageBox.warning(
+                    self, "Error", "El usuario no tiene una imagen de perfil"
+                )
+        else:
+            QMessageBox.warning(self, "Error", "Usuario no encontrado")
 
     def exit_session(self):
         self.close()

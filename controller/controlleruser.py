@@ -16,6 +16,9 @@ class UserController:
     def get_user(self):
         return self.model.get_user()
 
+    def get_image_profile(self, uid):
+        return self.model.get_image_profile(uid)
+
     def update_user(self, uid, name, password, email, fono, address, role, image):
         return self.model.update(uid, name, password, email, fono, address, role, image)
 

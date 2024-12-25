@@ -219,3 +219,17 @@ class ModelUser:
                 conn.close()
         else:
             show_message("Error", "No se pudo conectar a la base de datos.")
+
+    def get_image_profile(self, user_id):
+        conn = connect_to_database()  # Conecta a la base de datos
+        cursor = conn.cursor()
+
+        # Consulta SQL para buscar un usuario por su ID
+        query = "SELECT image FROM user WHERE id = ?"
+        cursor.execute(query, (user_id,))
+
+        # Obtén el usuario (asumiendo que `id` es único)
+        user = cursor.fetchone()  # Usa fetchone() para un solo resultado
+
+        conn.close()  # Cierra la conexión
+        return user  # Devuelve el usuario encontrado o None si no existe

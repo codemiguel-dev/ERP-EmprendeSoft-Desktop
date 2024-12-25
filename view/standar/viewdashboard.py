@@ -121,7 +121,7 @@ class Viewdashboardstandar(QtWidgets.QMainWindow):
                 pixmap = QPixmap()
                 if pixmap.loadFromData(user_image):
                     # Redimensionar la imagen al tamaño deseado
-                    size = 35  # Tamaño deseado
+                    size = 30  # Tamaño deseado
                     scaled_pixmap = pixmap.scaled(
                         size,
                         size,

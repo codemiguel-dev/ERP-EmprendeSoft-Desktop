@@ -4,6 +4,7 @@ import pandas as pd
 from openpyxl import load_workbook
 from openpyxl.styles import Alignment, Font, PatternFill
 from PyQt5 import QtCore, QtWidgets
+from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QApplication, QFileDialog, QMessageBox, QSizeGrip
 from PyQt5.uic import loadUi
@@ -54,6 +55,7 @@ class Viewmainuserprofile(QtWidgets.QMainWindow):
         self.bt_maximizar.clicked.connect(lambda: control_bt_maximizar(self))
         self.bt_cerrar.clicked.connect(lambda: self.close())
         self.btn_update_profile.clicked.connect(self.update_profile)
+        self.btn_add_image.clicked.connect(self.add_image)
         self.bt_maximizar.hide()
 
         self.controlleruser = UserController(self)
@@ -73,6 +75,37 @@ class Viewmainuserprofile(QtWidgets.QMainWindow):
             self.phonetxt.setText(user[5])
         else:
             QMessageBox.warning(self, "Error", "Usuario no encontrado")
+
+    def add_image(self):
+        options = QFileDialog.Options()
+        file_path, _ = QFileDialog.getOpenFileName(
+            self,
+            "Seleccionar Imagen",
+            "",
+            "Images (*.png *.xpm *.jpg);;All Files (*)",
+            options=options,
+        )
+        if file_path:
+            self.imagetxt.setText(file_path)  # Mostrar el path de la imagen (opcional)
+
+            # Crear un QPixmap con la imagen seleccionada
+            pixmap = QPixmap(file_path)
+
+            # Ajustar el tamaño del QLabel y permitir que la imagen se escale
+            self.image_label.setFixedSize(
+                200, 200
+            )  # Cambiar el tamaño del QLabel (ancho, alto)
+            self.image_label.setScaledContents(
+                True
+            )  # La imagen se escala al tamaño del QLabel
+
+            # Mostrar la imagen en el QLabel
+            self.image_label.setPixmap(pixmap)
+
+            # Centrar la imagen dentro del QLabel
+            self.image_label.setAlignment(
+                Qt.AlignCenter
+            )  # Centrar horizontal y verticalmente
 
     def update_profile(self):
         name = self.nametxt.text()

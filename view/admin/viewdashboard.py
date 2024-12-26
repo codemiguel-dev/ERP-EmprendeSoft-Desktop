@@ -5,6 +5,9 @@ import sys
 
 import matplotlib.pyplot as plt
 from PyQt5 import QtWidgets
+from PyQt5.QtCore import QSize, Qt
+from PyQt5.QtGui import QIcon, QPixmap
+from PyQt5.QtWidgets import QFileDialog, QMessageBox, QSizeGrip
 from PyQt5.uic import loadUi
 
 from configuration.configuration_buttom import icon_configurate_exit_session
@@ -23,6 +26,7 @@ from controller.controllerinvestment import InvestmentController
 from controller.controllerinvoice import InvoiceController
 from controller.controllertask import TaskController
 from controller.controllertransaction import TransactionController
+from controller.controlleruser import UserController
 from view.admin.address.viewmain import Viewmainaddress
 from view.admin.business.viewmain import Viewmainbusiness
 from view.admin.calendar.viewmain import Viewmaincalendar
@@ -46,6 +50,7 @@ from view.admin.report.viewmain import Viewmainreport
 from view.admin.sent.viewmain import Viewmainsent
 from view.admin.task.viewmain import Viewmaintask
 from view.admin.transaction.viewmain import Viewmaintransaction
+from view.admin.user.profile.viewmain import Viewmainuserprofile
 from view.admin.user.viewmain import Viewmainuser
 
 CONFIG_FILE = "positions.json"
@@ -56,6 +61,8 @@ class Viewdashboradadmin(QtWidgets.QMainWindow):
         super(Viewdashboradadmin, self).__init__()
         self.theme = load_config(self)  # Lee la configuración al iniciar
         loadUi(f"design/admin/dashboardadmin{self.theme}.ui", self)
+
+        self.btn_profile.setIcon(QIcon("img/user-profile.svg"))
 
         self.label_id_session.setText(f"ID de Usuario: {id_user}")
         self.id_user = id_user
@@ -98,6 +105,7 @@ class Viewdashboradadmin(QtWidgets.QMainWindow):
         self.btn_employee.clicked.connect(self.employee)
         self.btn_calendar.clicked.connect(self.calendar)
         self.bt_exit_session.clicked.connect(self.exit_session)
+        self.btn_profile.clicked.connect(self.profile)
 
         # Configurar SizeGrip para redimensionar la ventana
         self.gripSize = 10
@@ -123,6 +131,9 @@ class Viewdashboradadmin(QtWidgets.QMainWindow):
         self.controllerinvoice = InvoiceController(self)
         self.controllertransaction = TransactionController(self)
         self.controllerbusiness = BusinessController(self)
+        self.controlleruser = UserController(self)
+
+        self.get_image_profile()
 
     def exit_session(self):
         self.close()
@@ -262,6 +273,57 @@ class Viewdashboradadmin(QtWidgets.QMainWindow):
     def address(self):
         self.address_view = Viewmainaddress()
         self.address_view.show()
+
+    def profile(self):
+        self.view_profile = Viewmainuserprofile(self.id_user)
+        self.view_profile.show()
+
+    def get_image_profile(self):
+        # Llama al controlador para obtener los datos del usuario por ID
+        user_data = self.controlleruser.get_image_profile(self.id_user)
+
+        if user_data:
+            # Asumiendo que el resultado es una tupla (id, nombre, correo, imagen_binaria, ...)
+            user_image = user_data[0]  # Suponiendo que la imagen está en el índice 3
+
+            if user_image:
+                # Convertir los datos binarios de la imagen en un QPixmap
+                pixmap = QPixmap()
+                if pixmap.loadFromData(user_image):
+                    # Redimensionar la imagen al tamaño deseado
+                    size = 30  # Tamaño deseado
+                    scaled_pixmap = pixmap.scaled(
+                        size,
+                        size,
+                        Qt.KeepAspectRatioByExpanding,
+                        Qt.SmoothTransformation,
+                    )
+
+                    # Crear un ícono a partir del pixmap
+                    icon = QIcon(scaled_pixmap)
+                    self.imagelabelprofile.setIcon(
+                        icon
+                    )  # Asigna el ícono al QPushButton
+                    self.imagelabelprofile.setIconSize(
+                        QSize(size, size)
+                    )  # Ajusta el tamaño del ícono
+                    self.imagelabelprofile.setIconSize(
+                        QSize(size, size)
+                    )  # Ajusta el tamaño del ícono
+                    self.imagelabelprofile.setIconSize(
+                        QSize(size, size)
+                    )  # Ajusta el tamaño del ícono
+
+                    # Carga la imagen desde los datos binarios
+
+                else:
+                    QMessageBox.warning(self, "Error", "No se pudo cargar la imagen")
+            else:
+                QMessageBox.warning(
+                    self, "Error", "El usuario no tiene una imagen de perfil"
+                )
+        else:
+            QMessageBox.warning(self, "Error", "Usuario no encontrado")
 
     def maps(self):
         """Obtiene las coordenadas de latitud y longitud para una dirección dada y muestra el mapa."""

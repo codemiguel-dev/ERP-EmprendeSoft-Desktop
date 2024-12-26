@@ -172,6 +172,31 @@ class ModelUser:
                 with conn:
                     cur = conn.cursor()
 
+                    # Inicializa los valores a actualizar y los parámetros
+                    update_fields = []
+                    params = []
+
+                    # Agrega los campos dinámicamente
+                    if name:
+                        update_fields.append("name = ?")
+                        params.append(name)
+
+                    if email:
+                        update_fields.append("email = ?")
+                        params.append(email)
+
+                    if phone:
+                        update_fields.append("contact_num = ?")
+                        params.append(phone)
+
+                    if password_new:
+                        # Cifra la contraseña antes de almacenarla
+                        hashed_password = bcrypt.hashpw(
+                            password_new.encode("utf-8"), bcrypt.gensalt()
+                        )
+                        update_fields.append("password = ?")
+                        params.append(hashed_password)
+
                     if image:
                         try:
                             # Verifica que image sea una ruta de archivo válida
@@ -181,39 +206,33 @@ class ModelUser:
                                 )
                             with open(image, "rb") as file:
                                 image_data = file.read()
+                            update_fields.append("image = ?")
+                            params.append(image_data)
                         except FileNotFoundError:
                             show_message(
                                 "Error", "La imagen seleccionada no se encontró."
                             )
                             return
-                    else:
-                        image_data = None  # O puedes cargar una imagen por defecto
 
-                    # Cifra la contraseña antes de almacenarla
-                    hashed_password = bcrypt.hashpw(
-                        password_new.encode("utf-8"), bcrypt.gensalt()
-                    )
-
-                    # Actualiza los datos del inventario existente
-                    cur.execute(
+                    # Solo procede si hay campos para actualizar
+                    if update_fields:
+                        update_query = f"""
+                            UPDATE user 
+                            SET {', '.join(update_fields)}
+                            WHERE id = ?;
                         """
-                    UPDATE user 
-                    SET name = ?, password = ?, email = ?, contact_num = ?, image = ?
-                    WHERE id = ?;
-                    """,
-                        (
-                            name,
-                            hashed_password,
-                            email,
-                            phone,
-                            image_data,
-                            user_id,
-                        ),
-                    )
+                        params.append(user_id)
+                        cur.execute(update_query, params)
 
-                    show_message(
-                        "Información", "Actualización realizada en la base de datos."
-                    )
+                        show_message(
+                            "Información",
+                            "Actualización realizada en la base de datos.",
+                        )
+                    else:
+                        show_message(
+                            "Información",
+                            "No se realizaron cambios, todos los campos son nulos.",
+                        )
 
             finally:
                 conn.close()

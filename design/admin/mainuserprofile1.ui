@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>957</width>
-    <height>655</height>
+    <height>749</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -45,7 +45,8 @@
        <string notr="true">
 QFrame {
 border-radius:10px;
-background-color: rgb(255, 255, 255); }
+	background-color: rgb(255, 255, 255);
+ }
 </string>
       </property>
       <property name="frameShape">
@@ -644,7 +645,7 @@ border: 2px solid rgb(120, 0, 171);
             <item>
              <widget class="QLabel" name="label_7">
               <property name="styleSheet">
-               <string notr="true">font-size: 30px;
+               <string notr="true">font: 30pt &quot;MS Shell Dlg 2&quot;;
 color: rgb(0, 0, 0);</string>
               </property>
               <property name="text">

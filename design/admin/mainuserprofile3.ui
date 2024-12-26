@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>957</width>
-    <height>655</height>
+    <height>688</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -45,7 +45,8 @@
        <string notr="true">
 QFrame {
 border-radius:10px;
-background-color: rgb(255, 255, 255); }
+background-color: rgb(33, 181, 0);
+ }
 </string>
       </property>
       <property name="frameShape">
@@ -302,7 +303,7 @@ QPushButton:hover{
          </property>
          <property name="styleSheet">
           <string notr="true">font: 30pt &quot;MS Shell Dlg 2&quot;;
-color: rgb(0, 0, 0);</string>
+color: rgb(255, 255, 255);</string>
          </property>
          <property name="text">
           <string>Perfil del usuario</string>
@@ -350,8 +351,7 @@ color: rgb(0, 0, 0);</string>
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">
-color: rgb(0, 0, 0);
+               <string notr="true">color: rgb(255, 255, 255);
 font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
               </property>
               <property name="text">
@@ -372,11 +372,17 @@ font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
 background-color: rgba(0, 0, 0,0);
 border-radius:10px; 
 font: 12pt &quot;Arial&quot;;
-border: 2px solid  rgb(120, 0, 171);
+color: rgb(255, 255, 254);
+border: 2px solid  rgb(255, 255, 255);
 
 }
 
-
+QLineEdit:hover{
+background-color: rgba(0, 0, 0,0);
+border-radius:10px; 
+font: 12pt &quot;Arial&quot;;
+border: 2px solid  rgb(120, 0, 171);
+}
 
 QLineEdit:focus{
 background-color: rgb(0, 0, 0);
@@ -398,8 +404,7 @@ border: 2px solid rgb(120, 0, 171);
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">
-color: rgb(0, 0, 0);
+               <string notr="true">color: rgb(255, 255, 255);
 font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
               </property>
               <property name="text">
@@ -420,11 +425,17 @@ font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
 background-color: rgba(0, 0, 0,0);
 border-radius:10px; 
 font: 12pt &quot;Arial&quot;;
-border: 2px solid  rgb(120, 0, 171);
+color: rgb(255, 255, 254);
+border: 2px solid  rgb(255, 255, 255);
 
 }
 
-
+QLineEdit:hover{
+background-color: rgba(0, 0, 0,0);
+border-radius:10px; 
+font: 12pt &quot;Arial&quot;;
+border: 2px solid  rgb(120, 0, 171);
+}
 
 QLineEdit:focus{
 background-color: rgb(0, 0, 0);
@@ -446,8 +457,7 @@ border: 2px solid rgb(120, 0, 171);
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">
-color: rgb(0, 0, 0);
+               <string notr="true">color: rgb(255, 255, 255);
 font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
               </property>
               <property name="text">
@@ -468,11 +478,17 @@ font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
 background-color: rgba(0, 0, 0,0);
 border-radius:10px; 
 font: 12pt &quot;Arial&quot;;
-border: 2px solid  rgb(120, 0, 171);
+color: rgb(255, 255, 254);
+border: 2px solid  rgb(255, 255, 255);
 
 }
 
-
+QLineEdit:hover{
+background-color: rgba(0, 0, 0,0);
+border-radius:10px; 
+font: 12pt &quot;Arial&quot;;
+border: 2px solid  rgb(120, 0, 171);
+}
 
 QLineEdit:focus{
 background-color: rgb(0, 0, 0);
@@ -494,8 +510,7 @@ border: 2px solid rgb(120, 0, 171);
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">
-color: rgb(0, 0, 0);
+               <string notr="true">color: rgb(255, 255, 255);
 font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
               </property>
               <property name="text">
@@ -516,11 +531,17 @@ font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
 background-color: rgba(0, 0, 0,0);
 border-radius:10px; 
 font: 12pt &quot;Arial&quot;;
-border: 2px solid  rgb(120, 0, 171);
+color: rgb(255, 255, 254);
+border: 2px solid  rgb(255, 255, 255);
 
 }
 
-
+QLineEdit:hover{
+background-color: rgba(0, 0, 0,0);
+border-radius:10px; 
+font: 12pt &quot;Arial&quot;;
+border: 2px solid  rgb(120, 0, 171);
+}
 
 QLineEdit:focus{
 background-color: rgb(0, 0, 0);
@@ -545,8 +566,7 @@ border: 2px solid rgb(120, 0, 171);
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">
-color: rgb(0, 0, 0);
+               <string notr="true">color: rgb(255, 255, 255);
 font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
               </property>
               <property name="text">
@@ -567,11 +587,17 @@ font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
 background-color: rgba(0, 0, 0,0);
 border-radius:10px; 
 font: 12pt &quot;Arial&quot;;
-border: 2px solid  rgb(120, 0, 171);
+color: rgb(255, 255, 254);
+border: 2px solid  rgb(255, 255, 255);
 
 }
 
-
+QLineEdit:hover{
+background-color: rgba(0, 0, 0,0);
+border-radius:10px; 
+font: 12pt &quot;Arial&quot;;
+border: 2px solid  rgb(120, 0, 171);
+}
 
 QLineEdit:focus{
 background-color: rgb(0, 0, 0);
@@ -608,13 +634,17 @@ border: 2px solid rgb(120, 0, 171);
                <string notr="true">QPushButton{
 border-radius:10px; 
 font: 12pt &quot;Arial&quot;;
-color: rgb(255, 255, 255);
-	background-color: rgb(120, 0, 171);
-
-border: 2px solid rgb(120, 0, 171);
+color: rgb(255, 255, 254);
+border: 2px solid #ffffff;
 }
 
-
+QPushButton:hover{
+border-radius:10px; 
+font: 12pt &quot;Arial&quot;;
+color: rgb(255, 255, 255);
+border: 2px solid rgb(120, 0, 171);
+	background-color: rgb(120, 0, 171);
+}
 </string>
               </property>
               <property name="text">
@@ -645,7 +675,7 @@ border: 2px solid rgb(120, 0, 171);
              <widget class="QLabel" name="label_7">
               <property name="styleSheet">
                <string notr="true">font-size: 30px;
-color: rgb(0, 0, 0);</string>
+color: rgb(255, 255, 255);</string>
               </property>
               <property name="text">
                <string>Agregar Imagen</string>
@@ -738,11 +768,17 @@ color: rgb(0, 0, 0);</string>
 background-color: rgba(0, 0, 0,0);
 border-radius:10px; 
 font: 12pt &quot;Arial&quot;;
-border: 2px solid  rgb(120, 0, 171);
+color: rgb(255, 255, 254);
+border: 2px solid  rgb(255, 255, 255);
 
 }
 
-
+QLineEdit:hover{
+background-color: rgba(0, 0, 0,0);
+border-radius:10px; 
+font: 12pt &quot;Arial&quot;;
+border: 2px solid  rgb(120, 0, 171);
+}
 
 QLineEdit:focus{
 background-color: rgb(0, 0, 0);
@@ -764,13 +800,17 @@ border: 2px solid rgb(120, 0, 171);
                <string notr="true">QPushButton{
 border-radius:10px; 
 font: 12pt &quot;Arial&quot;;
-color: rgb(255, 255, 255);
-	background-color: rgb(120, 0, 171);
-
-border: 2px solid rgb(120, 0, 171);
+color: rgb(255, 255, 254);
+border: 2px solid #ffffff;
 }
 
-
+QPushButton:hover{
+border-radius:10px; 
+font: 12pt &quot;Arial&quot;;
+color: rgb(255, 255, 255);
+border: 2px solid rgb(120, 0, 171);
+	background-color: rgb(120, 0, 171);
+}
 </string>
               </property>
               <property name="text">

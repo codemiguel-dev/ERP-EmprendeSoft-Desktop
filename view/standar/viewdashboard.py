@@ -53,11 +53,11 @@ class Viewdashboardstandar(QtWidgets.QMainWindow):
         self.id_user = id_user
         self.user_name = username
 
-        self.btn_profile.setIcon(QIcon("img/user-profile.svg"))
-
         icon_configurate_exit_session(self)
         icons_dash_buttom(self)
         delete_banner(self)
+
+        self.btn_profile.setIcon(QIcon("img/user-profile.svg"))
 
         # Configurar SizeGrip para redimensionar la ventana
         self.gripSize = 10
@@ -121,7 +121,7 @@ class Viewdashboardstandar(QtWidgets.QMainWindow):
                 pixmap = QPixmap()
                 if pixmap.loadFromData(user_image):
                     # Redimensionar la imagen al tamaño deseado
-                    size = 30  # Tamaño deseado
+                    size = 25  # Tamaño deseado
                     scaled_pixmap = pixmap.scaled(
                         size,
                         size,

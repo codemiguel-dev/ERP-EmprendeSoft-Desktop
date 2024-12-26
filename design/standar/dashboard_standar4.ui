@@ -129,7 +129,7 @@ QPushButton:hover{
            </spacer>
           </item>
           <item>
-           <widget class="QPushButton" name="imagelabelprofile_2">
+           <widget class="QPushButton" name="imagelabelprofile">
             <property name="minimumSize">
              <size>
               <width>38</width>

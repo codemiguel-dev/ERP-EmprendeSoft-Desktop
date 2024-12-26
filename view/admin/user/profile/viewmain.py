@@ -25,7 +25,7 @@ class Viewmainuserprofile(QtWidgets.QMainWindow):
     def __init__(self, id_user):
         super(Viewmainuserprofile, self).__init__()
         self.theme = load_config(self)  # Lee la configuración al iniciar
-        loadUi(f"design/standar/mainuserprofile{self.theme}.ui", self)
+        loadUi(f"design/admin/mainuserprofile{self.theme}.ui", self)
 
         self.id_user = id_user
 

@@ -249,7 +249,7 @@ class InvestmentChart(QMainWindow):
             self.scene.addItem(text_item)
 
             # Agregar el valor encima de la barra principal
-            value_item = QGraphicsTextItem(f"CLP{amount:.2f}")
+            value_item = QGraphicsTextItem(f"CLP {amount:.2f}")
             value_item.setDefaultTextColor(QColor(color))
             value_item.setPos(
                 x_offset + i * (bar_width + spacing), y_offset - bar_height - 25
@@ -257,7 +257,7 @@ class InvestmentChart(QMainWindow):
             self.scene.addItem(value_item)
 
             # Agregar el valor encima de la barra secundaria
-            value_item_secondary = QGraphicsTextItem(f"CLP{amount_end:.2f}")
+            value_item_secondary = QGraphicsTextItem(f"CLP {amount_end:.2f}")
             value_item_secondary.setDefaultTextColor(QColor("#a40fdd"))
             value_item_secondary.setPos(
                 x_offset + i * (bar_width + spacing) + bar_width // 5,

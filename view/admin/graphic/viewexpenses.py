@@ -62,6 +62,11 @@ class ExpensesChart(QMainWindow):
             f"design/admin/maingraphicexpenses{self.theme}.ui", self
         )  # Asegúrate de que el archivo esté en el mismo directorio
 
+        if int(self.theme) == 1:
+            color = "black"
+        else:
+            color = "white"
+
         icon_configurate_top(self)
         icon_exit_program(self)
         delete_banner(self)
@@ -101,7 +106,7 @@ class ExpensesChart(QMainWindow):
 
         # Obtener datos desde la base de datos y crear el gráfico
         inventory_data = self.controller.get_inventory()
-        self.create_chart(inventory_data)
+        self.create_chart(inventory_data, color)
 
         # Agregar botones de zoom
         self.zoom_in_button = self.findChild(QPushButton, "zoom_in_button")
@@ -166,7 +171,7 @@ class ExpensesChart(QMainWindow):
         # Añadir estiramiento al final para alinear las etiquetas de monto correctamente
         self.y_labels_layout.addStretch()
 
-    def create_chart(self, inventory_data):
+    def create_chart(self, inventory_data, color):
         """Crea un gráfico de barras en la escena usando los datos proporcionados desde la tabla de inventario."""
 
         # Extraer los datos necesarios del inventario
@@ -192,8 +197,8 @@ class ExpensesChart(QMainWindow):
             y_position = y_offset - (value / max_value) * chart_height
 
             # Etiqueta del eje Y
-            value_label = QGraphicsTextItem(f"CLP{value:.2f}")
-            value_label.setDefaultTextColor(Qt.white)
+            value_label = QGraphicsTextItem(f"CLP {value:.2f}")
+            value_label.setDefaultTextColor(QColor(color))
             value_label.setPos(x_offset - 70, y_position - 10)
             self.scene.addItem(value_label)
 

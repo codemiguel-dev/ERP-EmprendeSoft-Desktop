@@ -63,6 +63,11 @@ class TransactionChart(QMainWindow):
             f"design/admin/maingraphictransaction{self.theme}.ui", self
         )  # Asegúrate de que el archivo esté en el mismo directorio
 
+        if int(self.theme) == 1:
+            color = "black"
+        else:
+            color = "white"
+
         icon_configurate_top(self)
         icon_exit_program(self)
         delete_banner(self)

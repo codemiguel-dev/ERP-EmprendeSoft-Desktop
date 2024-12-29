@@ -107,7 +107,7 @@ class TransactionChart(QMainWindow):
 
         # Obtener datos desde la base de datos y crear el gráfico
         transaction_data = self.controller.get_transaction_graph()
-        self.create_chart(transaction_data)
+        self.create_chart(transaction_data, color)
 
         # Agregar botones de zoom
         self.zoom_in_button = self.findChild(QPushButton, "zoom_in_button")
@@ -172,7 +172,7 @@ class TransactionChart(QMainWindow):
         # Añadir estiramiento al final para alinear las etiquetas de monto correctamente
         self.y_labels_layout.addStretch()
 
-    def create_chart(self, transaction_data):
+    def create_chart(self, transaction_data, color):
         """Crea un gráfico de barras en la escena usando los datos de transacciones proporcionados."""
 
         # Extraer los datos necesarios de la consulta
@@ -200,7 +200,7 @@ class TransactionChart(QMainWindow):
 
             # Etiqueta del eje Y
             value_label = QGraphicsTextItem(f"CLP{value:.2f}")
-            value_label.setDefaultTextColor(Qt.white)
+            value_label.setDefaultTextColor(QColor(color))
             value_label.setPos(x_offset - 70, y_position - 10)
             self.scene.addItem(value_label)
 
@@ -231,14 +231,14 @@ class TransactionChart(QMainWindow):
 
             # Etiquetas del eje X (fecha de transacción)
             text_item = QGraphicsTextItem(date.strftime("%d-%m-%Y"))  # Formato de fecha
-            text_item.setDefaultTextColor(Qt.white)
+            text_item.setDefaultTextColor(QColor(color))
             text_item.setRotation(-45)  # Rotación para evitar superposición
             text_item.setPos(x_position - 10, y_offset + 20)
             self.scene.addItem(text_item)
 
             # Etiquetas de valores encima de las barras
             value_item = QGraphicsTextItem(f"CLP{amount:.2f}")
-            value_item.setDefaultTextColor(Qt.white)
+            value_item.setDefaultTextColor(QColor(color))
             value_item.setPos(
                 x_position,
                 y_offset - bar_height - 25,

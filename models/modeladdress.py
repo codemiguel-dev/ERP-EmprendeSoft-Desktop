@@ -10,7 +10,7 @@ from models.connect import connect_to_database
 
 class ModelAddress:
 
-    def register(self, country, region, commune, description):
+    def register(self, country=None, region=None, commune=None, description=None):
 
         # Crear una dirección completa para buscar las coordenadas
         full_address = f"{description}, {commune}, {region}, {country}"
@@ -35,16 +35,42 @@ class ModelAddress:
                 with conn:
                     cur = conn.cursor()
 
-                    # Inserta la nueva dirección en la tabla address
-                    cur.execute(
-                        """
-                        INSERT INTO address (country, region, commune, description) 
-                        VALUES (?, ?, ?, ?);
-                        """,
-                        (country, region, commune, description),
-                    )
+                    # Inicializa los valores y parámetros para la inserción
+                    insert_fields = []
+                    params = []
 
-                    show_message("Información", "Información registrada.")
+                    if country is not None:
+                        insert_fields.append("country")
+                        params.append(country)
+
+                    if region is not None:
+                        insert_fields.append("region")
+                        params.append(region)
+                    if commune is not None:
+                        insert_fields.append("commune")
+                        params.append(commune)
+
+                    if description is not None:
+                        insert_fields.append("description")
+                        params.append(description)
+
+                    # Si hay campos para insertar
+                    if insert_fields:
+                        placeholders = ", ".join(["?"] * len(insert_fields))
+                        insert_query = f"""
+                            INSERT INTO address ({', '.join(insert_fields)})
+                            VALUES ({placeholders});
+                        """
+                        cur.execute(insert_query, params)
+
+                        show_message("Información", "Registro exitoso.")
+                    else:
+                        show_message(
+                            "Información", "No se proporcionaron campos para registrar."
+                        )
+
+            except sqlite3.Error as e:
+                show_message("Error", f"No se pudo registrar el producto: {e}")
             finally:
                 conn.close()
         else:

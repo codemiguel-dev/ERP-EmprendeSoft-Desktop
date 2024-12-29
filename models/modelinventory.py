@@ -12,44 +12,100 @@ class ModelInventory:
 
     def register(
         self,
-        name,
-        category,
-        stock,
-        purchase_price,
-        sale_price,
-        total_purch,
-        description,
-        image,
+        name=None,
+        category=None,
+        stock=None,
+        purchase_price=None,
+        sale_price=None,
+        total_purch=None,
+        description=None,
+        image_path=None,
     ):
+        """
+        Registra un nuevo producto en la tabla 'inventory' de forma dinámica.
+
+        :param name: Nombre del producto (opcional).
+        :param category: Categoría del producto (opcional).
+        :param stock: Stock del producto (opcional).
+        :param purchase_price: Precio de compra del producto (opcional).
+        :param sale_price: Precio de venta del producto (opcional).
+        :param total_purch: Total de compras del producto (opcional).
+        :param description: Descripción del producto (opcional).
+        :param image_path: Ruta de la imagen del producto (opcional).
+        """
         conn = connect_to_database()
         if conn:
             try:
                 with conn:
                     cur = conn.cursor()
 
-                    # Leer la imagen como binario
-                    with open(image, "rb") as file:
-                        image_data = file.read()
+                    # Inicializa los valores y parámetros para la inserción
+                    insert_fields = []
+                    params = []
 
-                    # Inserta el nuevo usuario en la base de datos con la imagen como BLOB
-                    cur.execute(
+                    # Agrega los campos dinámicamente
+                    if name is not None:
+                        insert_fields.append("name")
+                        params.append(name)
+
+                    if category is not None:
+                        insert_fields.append("category")
+                        params.append(category)
+
+                    if stock is not None:
+                        insert_fields.append("stock")
+                        params.append(stock)
+
+                    if purchase_price is not None:
+                        insert_fields.append("purchase_price")
+                        params.append(purchase_price)
+
+                    if sale_price is not None:
+                        insert_fields.append("sale_price")
+                        params.append(sale_price)
+
+                    if total_purch is not None:
+                        insert_fields.append("totalpurch")
+                        params.append(total_purch)
+
+                    if description is not None:
+                        insert_fields.append("description")
+                        params.append(description)
+
+                    if image_path:
+                        try:
+                            # Verifica que la imagen sea una ruta válida
+                            if not os.path.isfile(image_path):
+                                raise FileNotFoundError(
+                                    "La imagen seleccionada no se encontró."
+                                )
+                            with open(image_path, "rb") as file:
+                                image_data = sqlite3.Binary(file.read())
+                            insert_fields.append("image")
+                            params.append(image_data)
+                        except FileNotFoundError:
+                            show_message(
+                                "Error", "La imagen seleccionada no se encontró."
+                            )
+                            return
+
+                    # Si hay campos para insertar
+                    if insert_fields:
+                        placeholders = ", ".join(["?"] * len(insert_fields))
+                        insert_query = f"""
+                            INSERT INTO inventory ({', '.join(insert_fields)})
+                            VALUES ({placeholders});
                         """
-                        INSERT INTO inventory (name, category, stock, purchase_price, sale_price, totalpurch, description, image) 
-                        VALUES (?, ?, ?, ?, ?, ?, ?, ?);
-                        """,
-                        (
-                            name,
-                            category,
-                            stock,
-                            purchase_price,
-                            sale_price,
-                            total_purch,
-                            description,
-                            image_data,
-                        ),
-                    )
+                        cur.execute(insert_query, params)
 
-                show_message("Información", "Registro exitoso.")
+                        show_message("Información", "Registro exitoso.")
+                    else:
+                        show_message(
+                            "Información", "No se proporcionaron campos para registrar."
+                        )
+
+            except sqlite3.Error as e:
+                show_message("Error", f"No se pudo registrar el producto: {e}")
             finally:
                 conn.close()
         else:

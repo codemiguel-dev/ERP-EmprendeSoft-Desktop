@@ -92,20 +92,40 @@ class ModelAddress:
                 with conn:
                     cur = conn.cursor()
 
-                    # Actualiza los datos del inventario existente
-                    cur.execute(
-                        """
-                    UPDATE address
-                    SET region = ?, commune = ?, description = ?
-                    WHERE id = ?;
-                    """,
-                        (region, commune, address, uid),
-                    )
+                    # Inicializa los valores y parámetros para la inserción
+                    update_fields = []
+                    params = []
 
-                    conn.commit()
-                    show_message(
-                        "Información", "Actualización realizada en la base de datos."
-                    )
+                    if region is not None:
+                        update_fields.append("region = ?")
+                        params.append(region)
+                    if commune is not None:
+                        update_fields.append("commune = ?")
+                        params.append(commune)
+
+                    if address is not None:
+                        update_fields.append("description = ?")
+                        params.append(address)
+
+                    # Solo procede si hay campos para actualizar
+                    if update_fields:
+                        update_query = f"""
+                            UPDATE address 
+                            SET {', '.join(update_fields)}
+                            WHERE id = ?;
+                        """
+                        params.append(uid)
+                        cur.execute(update_query, params)
+
+                        show_message(
+                            "Información",
+                            "Actualización realizada en la base de datos.",
+                        )
+                    else:
+                        show_message(
+                            "Información",
+                            "No se realizaron cambios, todos los campos son nulos.",
+                        )
 
             except sqlite3.Error as e:
                 show_message("Error", f"No se pudo actualizar la base de datos: {e}")

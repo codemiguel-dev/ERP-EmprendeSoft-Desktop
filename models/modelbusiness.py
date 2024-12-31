@@ -71,24 +71,68 @@ class ModelBusiness:
                             None  # O carga una imagen por defecto si lo prefieres
                         )
 
-                    # Insertar el nuevo registro de empresa
-                    cur.execute(
-                        """
-                        INSERT INTO business (address_id, name, image, legal_form, industry, registration_number, founding_date) 
-                        VALUES (?, ?, ?, ?, ?, ?, ?);
-                        """,
-                        (
-                            address_id,
-                            name,
-                            image_data,
-                            legal_form,
-                            industry,
-                            registration_number,
-                            founding_date,
-                        ),
-                    )
+                    # Inicializa los valores a actualizar y los parámetros
+                    insert_fields = []
+                    params = []
 
-                    show_message("Información", "Registro exitoso.")
+                    if address_id is not None:
+                        insert_fields.append("address_id")
+                        params.append(address_id)
+
+                    if name is not None:
+                        insert_fields.append("name")
+                        params.append(name)
+
+                    if image:
+                        try:
+                            # Verifica que la imagen sea una ruta válida
+                            if not os.path.isfile(image):
+                                raise FileNotFoundError(
+                                    "La imagen seleccionada no se encontró."
+                                )
+                            with open(image, "rb") as file:
+                                image_data = sqlite3.Binary(file.read())
+                            insert_fields.append("image")
+                            params.append(image_data)
+                        except FileNotFoundError:
+                            show_message(
+                                "Error", "La imagen seleccionada no se encontró."
+                            )
+                            return
+
+                    if legal_form is not None:
+                        insert_fields.append("legal_form")
+                        params.append(legal_form)
+
+                    if industry is not None:
+                        insert_fields.append("industry")
+                        params.append(industry)
+
+                    if registration_number is not None:
+                        insert_fields.append("registration_number")
+                        params.append(registration_number)
+
+                    if founding_date is not None:
+                        insert_fields.append("founding_date")
+                        params.append(founding_date)
+
+                    # Si hay campos para insertar
+                    if insert_fields:
+                        placeholders = ", ".join(["?"] * len(insert_fields))
+                        insert_query = f"""
+                            INSERT INTO business ({', '.join(insert_fields)})
+                            VALUES ({placeholders});
+                        """
+                        cur.execute(insert_query, params)
+
+                        show_message("Información", "Registro exitoso.")
+                    else:
+                        show_message(
+                            "Información", "No se proporcionaron campos para registrar."
+                        )
+
+            except sqlite3.Error as e:
+                show_message("Error", f"No se pudo registrar el producto: {e}")
             finally:
                 conn.close()
         else:
@@ -169,7 +213,7 @@ class ModelBusiness:
 
     def update(
         self,
-        id_goal,
+        uid,
         name,
         num_legal,
         industry,
@@ -184,43 +228,71 @@ class ModelBusiness:
                 with conn:
                     cur = conn.cursor()
 
-                    if (
-                        image
-                    ):  # Leer la imagen como binario solo si la imagen no es nula
-                        with open(image, "rb") as file:
-                            image_data = (
-                                file.read()
-                            )  # Actualiza los datos del inventario existente incluyendo la imagen
-                            cur.execute(
-                                """ UPDATE business SET name = ?, legal_form = ?, industry = ?, registration_number = ?, founding_date = ?, address_id = ?, image = ? WHERE id = ?; """,
-                                (
-                                    name,
-                                    num_legal,
-                                    industry,
-                                    num_register,
-                                    date_founding,
-                                    address,
-                                    image_data,
-                                    id_goal,
-                                ),
+                    # Inicializa los valores a actualizar y los parámetros
+                    update_fields = []
+                    params = []
+
+                    # Agrega los campos dinámicamente
+                    if address is not None:
+                        update_fields.append("address_id = ?")
+                        params.append(address)
+
+                    # Agrega los campos dinámicamente
+                    if name is not None:
+                        update_fields.append("name = ?")
+                        params.append(name)
+
+                    if image:
+                        try:
+                            # Verifica que la imagen sea una ruta válida
+                            if not os.path.isfile(image):
+                                raise FileNotFoundError(
+                                    "La imagen seleccionada no se encontró."
+                                )
+                            with open(image, "rb") as file:
+                                image_data = sqlite3.Binary(file.read())
+                            update_fields.append("image = ?")
+                            params.append(image_data)
+                        except FileNotFoundError:
+                            show_message(
+                                "Error", "La imagen seleccionada no se encontró."
                             )
-                    else:  # Actualiza los datos del inventario existente sin la imagen
-                        cur.execute(
-                            """ UPDATE business SET name = ?, legal_form = ?, industry = ?, registration_number = ?, founding_date = ?, address_id = ? WHERE id = ?; """,
-                            (
-                                name,
-                                num_legal,
-                                industry,
-                                num_register,
-                                date_founding,
-                                address,
-                                id_goal,
-                            ),
-                        )
-                        conn.commit()
+                            return
+
+                    if num_legal is not None:
+                        update_fields.append("legal_form = ?")
+                        params.append(num_legal)
+
+                    if industry is not None:
+                        update_fields.append("industry = ?")
+                        params.append(industry)
+
+                    if num_register is not None:
+                        update_fields.append("registration_number = ?")
+                        params.append(num_register)
+
+                    if date_founding is not None:
+                        update_fields.append("founding_date = ?")
+                        params.append(date_founding)
+
+                    # Solo procede si hay campos para actualizar
+                    if update_fields:
+                        update_query = f"""
+                            UPDATE business 
+                            SET {', '.join(update_fields)}
+                            WHERE id = ?;
+                        """
+                        params.append(uid)
+                        cur.execute(update_query, params)
+
                         show_message(
                             "Información",
                             "Actualización realizada en la base de datos.",
+                        )
+                    else:
+                        show_message(
+                            "Información",
+                            "No se realizaron cambios, todos los campos son nulos.",
                         )
 
             except sqlite3.Error as e:

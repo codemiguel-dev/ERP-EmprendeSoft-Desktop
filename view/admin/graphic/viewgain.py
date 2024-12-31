@@ -60,6 +60,11 @@ class GainChart(QMainWindow):
             f"design/admin/maingraphicgain{self.theme}.ui", self
         )  # Asegúrate de que el archivo esté en el mismo directorio
 
+        if int(self.theme) == 1:
+            color = "black"
+        else:
+            color = "white"
+
         icon_configurate_top(self)
         icon_exit_program(self)
         delete_banner(self)
@@ -171,8 +176,12 @@ class GainChart(QMainWindow):
         business_names = [row[0] for row in business_data]  # 'name'
         gains = [row[1] for row in business_data]  # 'gain'
 
-        # Calcular el valor máximo para escalar las barras
-        max_value = max(gains) if gains else 1
+        # Validar si gains contiene datos válidos
+        if not gains:
+            # Manejar el caso de lista vacía
+            max_value = 1
+        else:
+            max_value = max(gains)
         num_labels = 10  # Número de etiquetas de monto en el eje Y
         increment = max_value / num_labels  # Incremento entre cada etiqueta de monto
 

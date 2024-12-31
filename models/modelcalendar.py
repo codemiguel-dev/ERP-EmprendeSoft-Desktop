@@ -1,10 +1,10 @@
 import os
-from configuration.configuration_message import show_message
-
+import sqlite3
 
 import bcrypt
 from passlib.hash import bcrypt as passlib_bcrypt
 
+from configuration.configuration_message import show_message
 from models.connect import connect_to_database
 
 
@@ -52,26 +52,53 @@ class ModelCalendar:
             try:
                 with conn:
                     cur = conn.cursor()
-                    # Actualiza los datos del inventario existente
-                    cur.execute(
+
+                    # Inicializa los valores a actualizar y los parámetros
+                    update_fields = []
+                    params = []
+
+                    # Agrega los campos dinámicamente
+                    if employee is not None:
+                        update_fields.append("employee_id = ?")
+                        params.append(employee)
+
+                    # Agrega los campos dinámicamente
+                    if start_time is not None:
+                        update_fields.append("start_time = ?")
+                        params.append(start_time)
+
+                    # Agrega los campos dinámicamente
+                    if end_time is not None:
+                        update_fields.append("end_time = ?")
+                        params.append(end_time)
+
+                    # Agrega los campos dinámicamente
+                    if horary is not None:
+                        update_fields.append("horary = ?")
+                        params.append(horary)
+
+                    # Solo procede si hay campos para actualizar
+                    if update_fields:
+                        update_query = f"""
+                            UPDATE calendar 
+                            SET {', '.join(update_fields)}
+                            WHERE id = ?;
                         """
-                    UPDATE calendar
-                    SET employee_id = ?, start_time = ?, end_time = ?, horary = ?
-                    WHERE id = ?;
-                    """,
-                        (
-                            employee,
-                            start_time,
-                            end_time,
-                            horary,
-                            uid,
-                        ),
-                    )
+                        params.append(uid)
+                        cur.execute(update_query, params)
 
-                    show_message(
-                        "Información", "Actualización realizada en la base de datos."
-                    )
+                        show_message(
+                            "Información",
+                            "Actualización realizada en la base de datos.",
+                        )
+                    else:
+                        show_message(
+                            "Información",
+                            "No se realizaron cambios, todos los campos son nulos.",
+                        )
 
+            except sqlite3.Error as e:
+                show_message("Error", f"No se pudo actualizar la base de datos: {e}")
             finally:
                 conn.close()
         else:

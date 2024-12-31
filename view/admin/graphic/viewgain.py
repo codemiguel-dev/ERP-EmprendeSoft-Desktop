@@ -198,7 +198,7 @@ class GainChart(QMainWindow):
 
             # Etiqueta del eje Y
             value_label = QGraphicsTextItem(f"CLP{value:.2f}")
-            value_label.setDefaultTextColor(Qt.white)
+            value_label.setDefaultTextColor(QColor(color))
             value_label.setPos(x_offset - 70, y_position - 10)
             self.scene.addItem(value_label)
 

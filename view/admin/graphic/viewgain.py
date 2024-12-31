@@ -104,7 +104,7 @@ class GainChart(QMainWindow):
 
         # Obtener datos desde la base de datos y crear el gráfico
         business_data = self.controller.get_graphi()
-        self.create_chart(business_data)
+        self.create_chart(business_data, color)
 
         # Agregar botones de zoom
         self.zoom_in_button = self.findChild(QPushButton, "zoom_in_button")
@@ -169,7 +169,7 @@ class GainChart(QMainWindow):
         # Añadir estiramiento al final para alinear las etiquetas de monto correctamente
         self.y_labels_layout.addStretch()
 
-    def create_chart(self, business_data):
+    def create_chart(self, business_data, color):
         """Crea un gráfico de barras en la escena usando los datos proporcionados desde la consulta de negocio."""
 
         # Extraer los datos necesarios del resultado de la consulta
@@ -206,7 +206,7 @@ class GainChart(QMainWindow):
             line = QGraphicsRectItem(
                 x_offset, y_position, len(business_data) * (bar_width + spacing), 1
             )
-            line.setBrush(QBrush(QColor("#E8E8E8")))
+            line.setBrush(QBrush(QColor(color)))
             line.setOpacity(1.0)
             self.scene.addItem(line)
 
@@ -229,13 +229,13 @@ class GainChart(QMainWindow):
 
             # Etiquetas del eje X (nombre del negocio)
             text_item = QGraphicsTextItem(name)
-            text_item.setDefaultTextColor(Qt.white)
+            text_item.setDefaultTextColor(QColor(color))
             text_item.setPos(x_position + bar_width // 4, y_offset + 10)
             self.scene.addItem(text_item)
 
             # Etiquetas de valores encima de las barras
             value_item = QGraphicsTextItem(f"CLP{gain:.2f}")
-            value_item.setDefaultTextColor(Qt.white)
+            value_item.setDefaultTextColor(QColor(color))
             value_item.setPos(
                 x_position,
                 y_offset - bar_height - 25,

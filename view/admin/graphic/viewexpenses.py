@@ -249,7 +249,7 @@ class ExpensesChart(QMainWindow):
             self.scene.addItem(text_item)
 
             # Etiquetas de valores encima de las barras
-            value_item_purchase = QGraphicsTextItem(f"CLP{purchase_price:.2f}")
+            value_item_purchase = QGraphicsTextItem(f"CLP {purchase_price:.2f}")
             value_item_purchase.setDefaultTextColor(QColor(color))
             value_item_purchase.setPos(
                 x_position,
@@ -257,8 +257,8 @@ class ExpensesChart(QMainWindow):
             )
             self.scene.addItem(value_item_purchase)
 
-            value_item_sale = QGraphicsTextItem(f"CLP{sale_price:.2f}")
-            value_item_sale.setDefaultTextColor(QColor("#FFA500"))
+            value_item_sale = QGraphicsTextItem(f"CLP {sale_price:.2f}")
+            value_item_sale.setDefaultTextColor(QColor(color))
             value_item_sale.setPos(
                 x_position + bar_width + 10,
                 y_offset - bar_height_sale - 25,

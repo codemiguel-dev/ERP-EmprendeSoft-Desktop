@@ -244,7 +244,7 @@ class ExpensesChart(QMainWindow):
 
             # Etiquetas del eje X (nombre del producto)
             text_item = QGraphicsTextItem(name)
-            text_item.setDefaultTextColor(Qt.white)
+            text_item.setDefaultTextColor(QColor(color))
             text_item.setPos(x_position + bar_width // 2, y_offset + 10)
             self.scene.addItem(text_item)
 

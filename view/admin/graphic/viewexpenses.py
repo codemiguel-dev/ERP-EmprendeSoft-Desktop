@@ -250,7 +250,7 @@ class ExpensesChart(QMainWindow):
 
             # Etiquetas de valores encima de las barras
             value_item_purchase = QGraphicsTextItem(f"CLP{purchase_price:.2f}")
-            value_item_purchase.setDefaultTextColor(Qt.white)
+            value_item_purchase.setDefaultTextColor(QColor(color))
             value_item_purchase.setPos(
                 x_position,
                 y_offset - bar_height_purchase - 25,

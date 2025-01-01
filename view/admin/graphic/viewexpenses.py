@@ -165,7 +165,7 @@ class ExpensesChart(QMainWindow):
         y_offset = 400
         for i in range(num_labels + 1):
             value = i * increment
-            value_label = QLabel(f"CP{value:.2f}")
+            value_label = QLabel(f"CLP {value:.2f}")
             value_label.setAlignment(Qt.AlignRight)
             self.y_labels_layout.addWidget(value_label)
         # Añadir estiramiento al final para alinear las etiquetas de monto correctamente
@@ -206,7 +206,7 @@ class ExpensesChart(QMainWindow):
             line = QGraphicsRectItem(
                 x_offset, y_position, len(inventory_data) * (bar_width + spacing), 1
             )
-            line.setBrush(QBrush(QColor("#E8E8E8")))
+            line.setBrush(QBrush(QColor("#CECECE")))
             line.setOpacity(1.0)
             self.scene.addItem(line)
 

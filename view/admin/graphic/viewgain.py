@@ -183,7 +183,9 @@ class GainChart(QMainWindow):
         else:
             max_value = max(gains)
         num_labels = 10  # Número de etiquetas de monto en el eje Y
-        increment = max_value / num_labels  # Incremento entre cada etiqueta de monto
+        increment = (
+            max_value / num_labels if max_value != 0 else 0
+        )  # Incremento entre cada etiqueta de monto
 
         bar_width = 50
         spacing = 80
@@ -194,10 +196,14 @@ class GainChart(QMainWindow):
         # Agregar etiquetas de monto en el eje Y y líneas de fondo
         for i in range(num_labels + 1):
             value = i * increment
-            y_position = y_offset - (value / max_value) * chart_height
+            y_position = (
+                y_offset - (value / max_value) * chart_height
+                if max_value != 0
+                else y_offset
+            )
 
             # Etiqueta del eje Y
-            value_label = QGraphicsTextItem(f"CLP{value:.2f}")
+            value_label = QGraphicsTextItem(f"CLP {value:.2f}")
             value_label.setDefaultTextColor(QColor(color))
             value_label.setPos(x_offset - 70, y_position - 10)
             self.scene.addItem(value_label)
@@ -215,7 +221,7 @@ class GainChart(QMainWindow):
             x_position = x_offset + i * (bar_width + spacing)
 
             # Altura de la barra
-            bar_height = (gain / max_value) * chart_height
+            bar_height = (gain / max_value) * chart_height if max_value != 0 else 0
 
             # Dibujar la barra del gain
             rect = QGraphicsRectItem(

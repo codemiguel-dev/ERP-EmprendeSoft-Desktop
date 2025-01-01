@@ -199,7 +199,7 @@ class InvestmentChart(QMainWindow):
             y_position = y_offset - (value / max_value) * chart_height
 
             # Etiqueta del eje Y
-            value_label = QGraphicsTextItem(f"CLP{value:.2f}")
+            value_label = QGraphicsTextItem(f"CLP {value:.2f}")
             value_label.setDefaultTextColor(
                 QColor(color)
             )  # Asegurarte de usar un QColor

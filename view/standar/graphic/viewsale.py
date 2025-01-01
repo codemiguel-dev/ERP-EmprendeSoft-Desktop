@@ -59,8 +59,13 @@ class SaleChart(QMainWindow):
         self.theme = load_config(self)  # Lee la configuración al iniciar
         # Cargar el diseño desde el archivo .ui
         loadUi(
-            f"design/standar/maingraphicsale{self.theme}.ui", self
+            f"design/admin/maingraphicsale{self.theme}.ui", self
         )  # Asegúrate de que el archivo esté en el mismo directorio
+
+        if int(self.theme) == 1:
+            color = "black"
+        else:
+            color = "white"
 
         icon_configurate_top(self)
         icon_exit_program(self)
@@ -101,7 +106,7 @@ class SaleChart(QMainWindow):
 
         # Obtener datos desde la base de datos y crear el gráfico
         invoice_data = self.controller.get_invoice_graph()
-        self.create_chart(invoice_data)
+        self.create_chart(invoice_data, color)
 
         # Agregar botones de zoom
         self.zoom_in_button = self.findChild(QPushButton, "zoom_in_button")
@@ -166,7 +171,7 @@ class SaleChart(QMainWindow):
         # Añadir estiramiento al final para alinear las etiquetas de monto correctamente
         self.y_labels_layout.addStretch()
 
-    def create_chart(self, invoice_data):
+    def create_chart(self, invoice_data, color):
         """Crea un gráfico de barras en la escena usando los datos proporcionados desde la consulta de factura."""
 
         # Extraer los datos necesarios del resultado de la consulta
@@ -190,8 +195,8 @@ class SaleChart(QMainWindow):
             y_position = y_offset - (value / max_value) * chart_height
 
             # Etiqueta del eje Y
-            value_label = QGraphicsTextItem(f"CLP{value:.2f}")
-            value_label.setDefaultTextColor(Qt.white)
+            value_label = QGraphicsTextItem(f"CLP {value:.2f}")
+            value_label.setDefaultTextColor(QColor(color))
             value_label.setPos(x_offset - 70, y_position - 10)
             self.scene.addItem(value_label)
 
@@ -222,13 +227,13 @@ class SaleChart(QMainWindow):
 
             # Etiquetas del eje X (nombre del producto)
             text_item = QGraphicsTextItem(name)
-            text_item.setDefaultTextColor(Qt.white)
+            text_item.setDefaultTextColor(QColor(color))
             text_item.setPos(x_position + bar_width // 4, y_offset + 10)
             self.scene.addItem(text_item)
 
             # Etiquetas de valores encima de las barras
-            value_item = QGraphicsTextItem(f"CLP{total_price:.2f}")
-            value_item.setDefaultTextColor(Qt.white)
+            value_item = QGraphicsTextItem(f"CLP {total_price:.2f}")
+            value_item.setDefaultTextColor(QColor(color))
             value_item.setPos(
                 x_position,
                 y_offset - bar_height - 25,

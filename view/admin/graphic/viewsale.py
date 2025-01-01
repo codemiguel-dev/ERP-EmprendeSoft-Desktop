@@ -195,7 +195,7 @@ class SaleChart(QMainWindow):
             y_position = y_offset - (value / max_value) * chart_height
 
             # Etiqueta del eje Y
-            value_label = QGraphicsTextItem(f"CLP{value:.2f}")
+            value_label = QGraphicsTextItem(f"CLP {value:.2f}")
             value_label.setDefaultTextColor(QColor(color))
             value_label.setPos(x_offset - 70, y_position - 10)
             self.scene.addItem(value_label)
@@ -227,13 +227,13 @@ class SaleChart(QMainWindow):
 
             # Etiquetas del eje X (nombre del producto)
             text_item = QGraphicsTextItem(name)
-            text_item.setDefaultTextColor(Qt.white)
+            text_item.setDefaultTextColor(QColor(color))
             text_item.setPos(x_position + bar_width // 4, y_offset + 10)
             self.scene.addItem(text_item)
 
             # Etiquetas de valores encima de las barras
-            value_item = QGraphicsTextItem(f"CLP{total_price:.2f}")
-            value_item.setDefaultTextColor(Qt.white)
+            value_item = QGraphicsTextItem(f"CLP {total_price:.2f}")
+            value_item.setDefaultTextColor(QColor(color))
             value_item.setPos(
                 x_position,
                 y_offset - bar_height - 25,

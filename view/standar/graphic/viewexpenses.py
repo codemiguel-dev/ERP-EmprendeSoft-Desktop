@@ -62,6 +62,11 @@ class ExpensesChart(QMainWindow):
             f"design/standar/maingraphicexpenses{self.theme}.ui", self
         )  # Asegúrate de que el archivo esté en el mismo directorio
 
+        if int(self.theme) == 1:
+            color = "black"
+        else:
+            color = "white"
+
         icon_configurate_top(self)
         icon_exit_program(self)
         delete_banner(self)
@@ -101,7 +106,7 @@ class ExpensesChart(QMainWindow):
 
         # Obtener datos desde la base de datos y crear el gráfico
         inventory_data = self.controller.get_inventory()
-        self.create_chart(inventory_data)
+        self.create_chart(inventory_data, color)
 
         # Agregar botones de zoom
         self.zoom_in_button = self.findChild(QPushButton, "zoom_in_button")
@@ -160,13 +165,13 @@ class ExpensesChart(QMainWindow):
         y_offset = 400
         for i in range(num_labels + 1):
             value = i * increment
-            value_label = QLabel(f"CP{value:.2f}")
+            value_label = QLabel(f"CLP {value:.2f}")
             value_label.setAlignment(Qt.AlignRight)
             self.y_labels_layout.addWidget(value_label)
         # Añadir estiramiento al final para alinear las etiquetas de monto correctamente
         self.y_labels_layout.addStretch()
 
-    def create_chart(self, inventory_data):
+    def create_chart(self, inventory_data, color):
         """Crea un gráfico de barras en la escena usando los datos proporcionados desde la tabla de inventario."""
 
         # Extraer los datos necesarios del inventario
@@ -192,8 +197,8 @@ class ExpensesChart(QMainWindow):
             y_position = y_offset - (value / max_value) * chart_height
 
             # Etiqueta del eje Y
-            value_label = QGraphicsTextItem(f"CLP{value:.2f}")
-            value_label.setDefaultTextColor(Qt.white)
+            value_label = QGraphicsTextItem(f"CLP {value:.2f}")
+            value_label.setDefaultTextColor(QColor(color))
             value_label.setPos(x_offset - 70, y_position - 10)
             self.scene.addItem(value_label)
 
@@ -201,7 +206,7 @@ class ExpensesChart(QMainWindow):
             line = QGraphicsRectItem(
                 x_offset, y_position, len(inventory_data) * (bar_width + spacing), 1
             )
-            line.setBrush(QBrush(QColor("#E8E8E8")))
+            line.setBrush(QBrush(QColor("#CECECE")))
             line.setOpacity(1.0)
             self.scene.addItem(line)
 
@@ -239,21 +244,21 @@ class ExpensesChart(QMainWindow):
 
             # Etiquetas del eje X (nombre del producto)
             text_item = QGraphicsTextItem(name)
-            text_item.setDefaultTextColor(Qt.white)
+            text_item.setDefaultTextColor(QColor(color))
             text_item.setPos(x_position + bar_width // 2, y_offset + 10)
             self.scene.addItem(text_item)
 
             # Etiquetas de valores encima de las barras
-            value_item_purchase = QGraphicsTextItem(f"CLP{purchase_price:.2f}")
-            value_item_purchase.setDefaultTextColor(Qt.white)
+            value_item_purchase = QGraphicsTextItem(f"CLP {purchase_price:.2f}")
+            value_item_purchase.setDefaultTextColor(QColor(color))
             value_item_purchase.setPos(
                 x_position,
                 y_offset - bar_height_purchase - 25,
             )
             self.scene.addItem(value_item_purchase)
 
-            value_item_sale = QGraphicsTextItem(f"CLP{sale_price:.2f}")
-            value_item_sale.setDefaultTextColor(QColor("#FFA500"))
+            value_item_sale = QGraphicsTextItem(f"CLP {sale_price:.2f}")
+            value_item_sale.setDefaultTextColor(QColor(color))
             value_item_sale.setPos(
                 x_position + bar_width + 10,
                 y_offset - bar_height_sale - 25,

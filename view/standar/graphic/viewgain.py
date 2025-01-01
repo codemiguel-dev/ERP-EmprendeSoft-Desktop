@@ -60,6 +60,11 @@ class GainChart(QMainWindow):
             f"design/standar/maingraphicgain{self.theme}.ui", self
         )  # Asegúrate de que el archivo esté en el mismo directorio
 
+        if int(self.theme) == 1:
+            color = "black"
+        else:
+            color = "white"
+
         icon_configurate_top(self)
         icon_exit_program(self)
         delete_banner(self)
@@ -99,7 +104,7 @@ class GainChart(QMainWindow):
 
         # Obtener datos desde la base de datos y crear el gráfico
         business_data = self.controller.get_graphi()
-        self.create_chart(business_data)
+        self.create_chart(business_data, color)
 
         # Agregar botones de zoom
         self.zoom_in_button = self.findChild(QPushButton, "zoom_in_button")
@@ -164,17 +169,23 @@ class GainChart(QMainWindow):
         # Añadir estiramiento al final para alinear las etiquetas de monto correctamente
         self.y_labels_layout.addStretch()
 
-    def create_chart(self, business_data):
+    def create_chart(self, business_data, color):
         """Crea un gráfico de barras en la escena usando los datos proporcionados desde la consulta de negocio."""
 
         # Extraer los datos necesarios del resultado de la consulta
         business_names = [row[0] for row in business_data]  # 'name'
         gains = [row[1] for row in business_data]  # 'gain'
 
-        # Calcular el valor máximo para escalar las barras
-        max_value = max(gains) if gains else 1
+        # Validar si gains contiene datos válidos
+        if not gains:
+            # Manejar el caso de lista vacía
+            max_value = 1
+        else:
+            max_value = max(gains)
         num_labels = 10  # Número de etiquetas de monto en el eje Y
-        increment = max_value / num_labels  # Incremento entre cada etiqueta de monto
+        increment = (
+            max_value / num_labels if max_value != 0 else 0
+        )  # Incremento entre cada etiqueta de monto
 
         bar_width = 50
         spacing = 80
@@ -185,11 +196,15 @@ class GainChart(QMainWindow):
         # Agregar etiquetas de monto en el eje Y y líneas de fondo
         for i in range(num_labels + 1):
             value = i * increment
-            y_position = y_offset - (value / max_value) * chart_height
+            y_position = (
+                y_offset - (value / max_value) * chart_height
+                if max_value != 0
+                else y_offset
+            )
 
             # Etiqueta del eje Y
-            value_label = QGraphicsTextItem(f"CLP{value:.2f}")
-            value_label.setDefaultTextColor(Qt.white)
+            value_label = QGraphicsTextItem(f"CLP {value:.2f}")
+            value_label.setDefaultTextColor(QColor(color))
             value_label.setPos(x_offset - 70, y_position - 10)
             self.scene.addItem(value_label)
 
@@ -197,7 +212,7 @@ class GainChart(QMainWindow):
             line = QGraphicsRectItem(
                 x_offset, y_position, len(business_data) * (bar_width + spacing), 1
             )
-            line.setBrush(QBrush(QColor("#E8E8E8")))
+            line.setBrush(QBrush(QColor(color)))
             line.setOpacity(1.0)
             self.scene.addItem(line)
 
@@ -206,7 +221,7 @@ class GainChart(QMainWindow):
             x_position = x_offset + i * (bar_width + spacing)
 
             # Altura de la barra
-            bar_height = (gain / max_value) * chart_height
+            bar_height = (gain / max_value) * chart_height if max_value != 0 else 0
 
             # Dibujar la barra del gain
             rect = QGraphicsRectItem(
@@ -220,13 +235,13 @@ class GainChart(QMainWindow):
 
             # Etiquetas del eje X (nombre del negocio)
             text_item = QGraphicsTextItem(name)
-            text_item.setDefaultTextColor(Qt.white)
+            text_item.setDefaultTextColor(QColor(color))
             text_item.setPos(x_position + bar_width // 4, y_offset + 10)
             self.scene.addItem(text_item)
 
             # Etiquetas de valores encima de las barras
             value_item = QGraphicsTextItem(f"CLP{gain:.2f}")
-            value_item.setDefaultTextColor(Qt.white)
+            value_item.setDefaultTextColor(QColor(color))
             value_item.setPos(
                 x_position,
                 y_offset - bar_height - 25,

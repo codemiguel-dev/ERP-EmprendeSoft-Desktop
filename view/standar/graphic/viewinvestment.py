@@ -59,7 +59,7 @@ class InvestmentChart(QMainWindow):
         self.theme = load_config(self)  # Lee la configuración al iniciar
         # Cargar el diseño desde el archivo .ui
         loadUi(
-            f"design/admin/maingraphicinvestment{self.theme}.ui", self
+            f"design/standar/maingraphicinvestment{self.theme}.ui", self
         )  # Asegúrate de que el archivo esté en el mismo directorio
 
         # Determinar el color del rectángulo según el valor de self.theme
@@ -199,7 +199,7 @@ class InvestmentChart(QMainWindow):
             y_position = y_offset - (value / max_value) * chart_height
 
             # Etiqueta del eje Y
-            value_label = QGraphicsTextItem(f"CLP{value:.2f}")
+            value_label = QGraphicsTextItem(f"CLP {value:.2f}")
             value_label.setDefaultTextColor(
                 QColor(color)
             )  # Asegurarte de usar un QColor
@@ -249,7 +249,7 @@ class InvestmentChart(QMainWindow):
             self.scene.addItem(text_item)
 
             # Agregar el valor encima de la barra principal
-            value_item = QGraphicsTextItem(f"CLP{amount:.2f}")
+            value_item = QGraphicsTextItem(f"CLP {amount:.2f}")
             value_item.setDefaultTextColor(QColor(color))
             value_item.setPos(
                 x_offset + i * (bar_width + spacing), y_offset - bar_height - 25
@@ -257,7 +257,7 @@ class InvestmentChart(QMainWindow):
             self.scene.addItem(value_item)
 
             # Agregar el valor encima de la barra secundaria
-            value_item_secondary = QGraphicsTextItem(f"CLP{amount_end:.2f}")
+            value_item_secondary = QGraphicsTextItem(f"CLP {amount_end:.2f}")
             value_item_secondary.setDefaultTextColor(QColor("#a40fdd"))
             value_item_secondary.setPos(
                 x_offset + i * (bar_width + spacing) + bar_width // 5,
